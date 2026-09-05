@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MB Command Center</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #17202a;
+    }
+
+    .header {
+      background: #111827;
+      color: white;
+      padding: 25px 20px;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .welcome {
+      margin-bottom: 20px;
+    }
+
+    .welcome h2 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .welcome p {
+      color: #64748b;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .card .number {
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .card p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .section h3 {
+      margin-bottom: 15px;
+    }
+
+    .map {
+      height: 300px;
+      background: #e2e8f0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      text-align: center;
+    }
+
+    .dpd-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .dpd {
+      padding: 13px;
+      background: #f8fafc;
+      border-radius: 10px;
+      border-left: 4px solid #111827;
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .dpd-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dpd-list {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>MUDA BERGERAK PROV. SULAWESI SELATAN</h1>
+    <p>COMMAND CENTER</p>
+  </div>
+
+  <div class="container">
+
+    <div class="welcome">
+      <h2>Command Center</h2>
+      <p>Pusat monitoring dan koordinasi Muda Bergerak Sulawesi Selatan</p>
+    </div>
+
+    <div class="stats">
+
+      <div class="card">
+        <p>Total DPD</p>
+        <div class="number">24</div>
+      </div>
+
+      <div class="card">
+        <p>Sudah Terbentuk</p>
+        <div class="number">0</div>
+      </div>
+
+      <div class="card">
+        <p>Siap Dilantik</p>
+        <div class="number">0</div>
+      </div>
+
+      <div class="card">
+        <p>Dalam Proses</p>
+        <div class="number">0</div>
+      </div>
+
+    </div>
+
+    <div class="section">
+      <h3>🗺️ Monitoring Wilayah</h3>
+
+      <div class="map">
+        PETA SULAWESI SELATAN<br>
+        24 DPD KABUPATEN/KOTA
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📍 24 DPD Kabupaten/Kota</h3>
+
+      <div class="dpd-list">
+
+        <div class="dpd">DPD Kota Makassar</div>
+        <div class="dpd">DPD Kota Parepare</div>
+        <div class="dpd">DPD Kota Palopo</div>
+
+        <div class="dpd">DPD Bantaeng</div>
+        <div class="dpd">DPD Barru</div>
+        <div class="dpd">DPD Bone</div>
+
+        <div class="dpd">DPD Bulukumba</div>
+        <div class="dpd">DPD Enrekang</div>
+        <div class="dpd">DPD Gowa</div>
+
+        <div class="dpd">DPD Jeneponto</div>
+        <div class="dpd">DPD Kepulauan Selayar</div>
+        <div class="dpd">DPD Luwu</div>
+
+        <div class="dpd">DPD Luwu Timur</div>
+        <div class="dpd">DPD Luwu Utara</div>
+        <div class="dpd">DPD Maros</div>
+
+        <div class="dpd">DPD Pangkajene dan Kepulauan</div>
+        <div class="dpd">DPD Pinrang</div>
+        <div class="dpd">DPD Sidenreng Rappang</div>
+
+        <div class="dpd">DPD Sinjai</div>
+        <div class="dpd">DPD Soppeng</div>
+        <div class="dpd">DPD Takalar</div>
+
+        <div class="dpd">DPD Tana Toraja</div>
+        <div class="dpd">DPD Toraja Utara</div>
+        <div class="dpd">DPD Wajo</div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
