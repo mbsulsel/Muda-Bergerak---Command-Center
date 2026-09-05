@@ -2,569 +2,841 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Command Center Muda Bergerak Sulsel</title>
+<title>MUDA BERGERAK SULSEL — COMMAND CENTER</title>
 
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-
+<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- LEAFLET -->
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial,sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-background:#f4f5f7;
-color:#222;
+  font-family:Arial, sans-serif;
+  background:#f5f5f5;
+  color:#222;
 }
 
+
+/* =========================
+   HEADER
+========================= */
+
 header{
-background:linear-gradient(135deg,#ff7a00,#ff9d2e);
-color:white;
-padding:18px;
-position:sticky;
-top:0;
-z-index:999;
-box-shadow:0 3px 10px #0002;
+  background:linear-gradient(135deg,#ff6a00,#ff8c00);
+  color:white;
+  padding:22px 18px;
+  box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
 .header-title{
-font-size:21px;
-font-weight:bold;
+  font-size:21px;
+  font-weight:bold;
 }
 
-.header-sub{
-font-size:12px;
-margin-top:4px;
-opacity:.9;
+.header-subtitle{
+  margin-top:5px;
+  font-size:13px;
+  opacity:.95;
 }
 
-.nav{
-display:flex;
-gap:7px;
-overflow-x:auto;
-padding:10px;
-background:white;
-border-bottom:1px solid #ddd;
-position:sticky;
-top:73px;
-z-index:998;
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:18px;
 }
 
-.nav button{
-border:0;
-background:#f1f1f1;
-padding:9px 14px;
-border-radius:20px;
-white-space:nowrap;
-font-weight:bold;
-font-size:12px;
-cursor:pointer;
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  background:white;
+  padding:10px;
+  border-radius:12px;
+  margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
 }
 
-.nav button.active{
-background:#ff7900;
-color:white;
+nav button{
+  border:0;
+  background:#f1f1f1;
+  padding:10px 15px;
+  border-radius:9px;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:13px;
 }
 
-main{
-padding:15px;
-max-width:1200px;
-margin:auto;
+nav button.active{
+  background:#ff6a00;
+  color:white;
 }
+
+
+/* =========================
+   SECTION
+========================= */
 
 .section{
-display:none;
+  display:none;
 }
 
 .section.active{
-display:block;
+  display:block;
 }
 
-.page-title{
-font-size:22px;
-font-weight:bold;
-margin-bottom:5px;
+.section-title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:15px;
 }
 
-.page-sub{
-font-size:13px;
-color:#777;
-margin-bottom:15px;
-}
+
+/* =========================
+   STATISTICS
+========================= */
 
 .stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
-margin-bottom:18px;
-}
-
-.stat{
-background:white;
-padding:15px;
-border-radius:13px;
-box-shadow:0 2px 8px #0001;
-}
-
-.stat-number{
-font-size:26px;
-font-weight:bold;
-color:#ff7600;
-}
-
-.stat-label{
-font-size:11px;
-color:#777;
-margin-top:4px;
-}
-
-.search{
-width:100%;
-padding:13px;
-border:1px solid #ddd;
-border-radius:10px;
-margin-bottom:15px;
-font-size:14px;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:18px;
 }
 
 .card{
-background:white;
-border-radius:14px;
-padding:15px;
-box-shadow:0 2px 8px #0001;
+  background:white;
+  border-radius:14px;
+  padding:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
-.card-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
+.stat-title{
+  font-size:12px;
+  color:#777;
+  margin-bottom:8px;
 }
 
-.card-title{
-font-size:16px;
-font-weight:bold;
+.stat-number{
+  font-size:28px;
+  font-weight:bold;
+  color:#ff6a00;
+}
+
+
+/* =========================
+   MAP
+========================= */
+
+.map-card{
+  margin-top:18px;
+  padding:0;
+  overflow:hidden;
+}
+
+.map-header{
+  padding:18px 18px 12px 18px;
+}
+
+.map-title{
+  font-size:18px;
+  font-weight:bold;
+}
+
+.map-subtitle{
+  color:#777;
+  font-size:12px;
+  margin-top:4px;
+}
+
+#map{
+  height:430px;
+  width:100%;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.info{
+  font-size:13px;
+  color:#666;
+  line-height:1.7;
+}
+
+
+/* =========================
+   MONITORING
+========================= */
+
+.controls{
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+  flex-wrap:wrap;
+}
+
+input,
+select{
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  background:white;
+  font-size:14px;
+}
+
+input{
+  flex:1;
+  min-width:200px;
+}
+
+.dpd-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.dpd-card{
+  background:white;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.dpd-name{
+  font-size:17px;
+  font-weight:bold;
+  margin-bottom:10px;
 }
 
 .badge{
-padding:5px 8px;
-border-radius:20px;
-font-size:9px;
-font-weight:bold;
-background:#eee;
-white-space:nowrap;
+  display:inline-block;
+  padding:6px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:12px;
 }
 
-.progress-wrap{
-margin-top:12px;
+.badge-belum{
+  background:#eee;
+  color:#666;
 }
 
-.progress-info{
-display:flex;
-justify-content:space-between;
-font-size:11px;
-color:#777;
-margin-bottom:5px;
+.badge-proses{
+  background:#fff0d9;
+  color:#d47700;
 }
 
-.progress{
-height:8px;
-background:#eee;
-border-radius:20px;
-overflow:hidden;
+.badge-selesai{
+  background:#dff5e5;
+  color:#16833a;
+}
+
+.badge-lantik{
+  background:#e2edff;
+  color:#2165c7;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-box{
+  margin-top:12px;
 }
 
 .progress-bar{
-height:100%;
-background:#ff7900;
-border-radius:20px;
+  height:9px;
+  background:#eee;
+  border-radius:20px;
+  overflow:hidden;
 }
 
-.detail-btn{
-width:100%;
-margin-top:13px;
-padding:10px;
-border:0;
-border-radius:9px;
-background:#ff7900;
-color:white;
-font-weight:bold;
-cursor:pointer;
+.progress-fill{
+  height:100%;
+  background:#ff6a00;
+  border-radius:20px;
 }
 
-.detail{
-display:none;
-margin-top:14px;
-border-top:1px solid #eee;
-padding-top:13px;
+.progress-text{
+  font-size:12px;
+  color:#777;
+  margin-top:5px;
 }
 
-.detail.show{
-display:block;
-}
 
-.info-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
-margin-bottom:15px;
-}
-
-.info{
-background:#f8f8f8;
-padding:9px;
-border-radius:8px;
-}
-
-.info-label{
-font-size:9px;
-color:#888;
-}
-
-.info-value{
-font-size:12px;
-font-weight:bold;
-margin-top:3px;
-}
-
-.bidang-title{
-font-size:14px;
-font-weight:bold;
-margin:10px 0;
-color:#ff7200;
-}
-
-.bidang{
-border:1px solid #eee;
-border-radius:10px;
-padding:10px;
-margin-bottom:8px;
-}
-
-.bidang-name{
-font-size:12px;
-font-weight:bold;
-margin-bottom:8px;
-}
-
-.bidang-row{
-font-size:10px;
-margin:4px 0;
-color:#555;
-}
-
-.bidang-progress{
-height:6px;
-background:#eee;
-border-radius:20px;
-margin-top:7px;
-overflow:hidden;
-}
-
-.bidang-progress div{
-height:100%;
-background:#ff7900;
-}
-
-#map{
-height:520px;
-border-radius:14px;
-overflow:hidden;
-box-shadow:0 2px 8px #0001;
-}
-
-.placeholder{
-background:white;
-padding:35px 20px;
-border-radius:14px;
-text-align:center;
-color:#777;
-box-shadow:0 2px 8px #0001;
-}
+/* =========================
+   STATUS
+========================= */
 
 .loading{
-text-align:center;
-padding:30px;
-color:#777;
+  text-align:center;
+  padding:30px;
+  color:#777;
 }
 
 .error{
-background:#ffe5e5;
-color:#b00020;
-padding:15px;
-border-radius:10px;
-margin-bottom:15px;
+  background:#ffe5e5;
+  color:#a00000;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:15px;
 }
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.dashboard-footer{
+  margin-top:22px;
+  padding:24px 20px;
+  background:#222;
+  color:white;
+  border-radius:14px;
+  line-height:1.7;
+  font-size:13px;
+}
+
+.footer-title{
+  font-size:17px;
+  font-weight:bold;
+  color:#ff8c00;
+  margin-bottom:14px;
+}
+
+.footer-address,
+.footer-social,
+.footer-contact{
+  margin-bottom:16px;
+}
+
+.dashboard-footer strong{
+  color:#ff8c00;
+}
+
+.footer-copy{
+  border-top:1px solid #444;
+  padding-top:13px;
+  margin-top:12px;
+  color:#aaa;
+  font-size:11px;
+  text-align:center;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px){
 
-.stats{
-grid-template-columns:repeat(2,1fr);
-}
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.cards{
-grid-template-columns:1fr;
-}
+  .dpd-grid{
+    grid-template-columns:1fr;
+  }
 
-#map{
-height:430px;
-}
+  #map{
+    height:350px;
+  }
+
+  .header-title{
+    font-size:18px;
+  }
+
+  .header-subtitle{
+    font-size:11px;
+  }
 
 }
 
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
-<div class="header-title">
-MUDA BERGERAK SULSEL
-</div>
+  <div class="header-title">
+    MUDA BERGERAK PROV. SULAWESI SELATAN
+  </div>
 
-<div class="header-sub">
-COMMAND CENTER • MONITORING ORGANISASI
-</div>
+  <div class="header-subtitle">
+    COMMAND CENTER — MONITORING 24 DPD KABUPATEN/KOTA
+  </div>
 
 </header>
 
-<div class="nav">
 
-<button class="active"
-onclick="showSection('dashboard',this)">
-Dashboard
-</button>
+<div class="container">
 
-<button
-onclick="showSection('dpd',this)">
-24 Kab/Kota
-</button>
 
-<button
-onclick="showSection('peta',this)">
-Peta
-</button>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-<button
-onclick="showSection('komunikasi',this)">
-Komunikasi
-</button>
+<nav>
 
-<button
-onclick="showSection('laporan',this)">
-Laporan
-</button>
+  <button
+    class="active"
+    onclick="showSection('dashboard',this)">
+    Dashboard
+  </button>
 
-<button
-onclick="showSection('agenda',this)">
-Agenda
-</button>
+  <button
+    onclick="showSection('monitoring',this)">
+    📊 Monitoring
+  </button>
 
-</div>
+  <button
+    onclick="showSection('komunikasi',this)">
+    💬 Komunikasi
+  </button>
 
-<main>
+  <button
+    onclick="showSection('laporan',this)">
+    📑 Laporan
+  </button>
 
-<!-- DASHBOARD -->
+  <button
+    onclick="showSection('agenda',this)">
+    📅 Agenda
+  </button>
 
-<section id="dashboard" class="section active">
+</nav>
 
-<div class="page-title">
-Dashboard
-</div>
 
-<div class="page-sub">
-Monitoring struktur DPW dan DPD Muda Bergerak Sulawesi Selatan
-</div>
 
-<div id="dashboardStats" class="stats">
+<!-- ==================================================
+     DASHBOARD
+================================================== -->
 
-<div class="stat">
-<div class="stat-number" id="totalDPD">-</div>
-<div class="stat-label">Total Kab/Kota</div>
-</div>
+<section
+  id="dashboard"
+  class="section active">
 
-<div class="stat">
-<div class="stat-number" id="totalBidang">-</div>
-<div class="stat-label">Total Bidang</div>
-</div>
 
-<div class="stat">
-<div class="stat-number" id="bidangAktif">-</div>
-<div class="stat-label">Bidang Aktif</div>
-</div>
+  <div class="section-title">
+    Dashboard DPW
+  </div>
 
-<div class="stat">
-<div class="stat-number" id="avgProgress">-</div>
-<div class="stat-label">Rata-rata Progress</div>
-</div>
 
-</div>
+  <!-- STATISTIK -->
 
-<div class="card">
+  <div class="stats">
 
-<div class="card-title">
-Ringkasan Struktur
-</div>
 
-<div id="summary" style="margin-top:12px;font-size:13px;color:#666">
-Memuat data...
-</div>
+    <div class="card">
 
-</div>
+      <div class="stat-title">
+        TOTAL DPD
+      </div>
+
+      <div
+        class="stat-number"
+        id="totalDPD">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="stat-title">
+        SUDAH TERBENTUK
+      </div>
+
+      <div
+        class="stat-number"
+        id="terbentuk">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="stat-title">
+        DALAM PROSES
+      </div>
+
+      <div
+        class="stat-number"
+        id="proses">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="stat-title">
+        SUDAH DILANTIK
+      </div>
+
+      <div
+        class="stat-number"
+        id="dilantik">
+        0
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- RINGKASAN -->
+
+  <div class="card">
+
+    <div class="section-title">
+      Ringkasan Organisasi
+    </div>
+
+    <p class="info">
+
+      Command Center DPW Muda Bergerak
+      Sulawesi Selatan digunakan sebagai pusat
+      monitoring perkembangan pembentukan
+      DPD Kabupaten/Kota se-Sulawesi Selatan.
+
+    </p>
+
+  </div>
+
+
+
+  <!-- PETA -->
+
+  <div class="card map-card">
+
+    <div class="map-header">
+
+      <div class="map-title">
+        🗺️ Peta DPD Sulawesi Selatan
+      </div>
+
+      <div class="map-subtitle">
+        Monitoring sebaran 24 DPD Kabupaten/Kota
+      </div>
+
+    </div>
+
+    <div id="map"></div>
+
+  </div>
+
+
+
+  <!-- FOOTER -->
+
+  <footer class="dashboard-footer">
+
+
+    <div class="footer-title">
+      MUDA BERGERAK SULAWESI SELATAN
+    </div>
+
+
+    <div class="footer-address">
+
+      <strong>
+        📍 Alamat Sekretariat
+      </strong>
+
+      <br>
+
+      Jl. Ance Dg. Ngoyo No. 8D,
+      Panakkukang - Kota Makassar
+
+    </div>
+
+
+    <div class="footer-social">
+
+      <strong>
+        🌐 Media Sosial
+      </strong>
+
+      <br>
+
+      Instagram : @mudabergeraksulsel
+
+      <br>
+
+      X : @MB_Sulsel
+
+      <br>
+
+      YouTube : MudaBergerakSulsel
+
+    </div>
+
+
+    <div class="footer-contact">
+
+      <strong>
+        📞 Contact Person
+      </strong>
+
+      <br>
+
+      Aprizal :
+      +62 822-9039-4468
+
+      <br>
+
+      Jumardi :
+      +62 853-1424-1908
+
+    </div>
+
+
+    <div class="footer-copy">
+
+      © 2026 Muda Bergerak Sulawesi Selatan
+      <br>
+
+      COMMAND CENTER
+
+    </div>
+
+
+  </footer>
+
 
 </section>
 
 
-<!-- DPD -->
 
-<section id="dpd" class="section">
+<!-- ==================================================
+     MONITORING
+================================================== -->
 
-<div class="page-title">
-Monitoring 24 Kab/Kota
-</div>
+<section
+  id="monitoring"
+  class="section">
 
-<div class="page-sub">
-Klik detail untuk melihat struktur DPD dan 6 bidang.
-</div>
 
-<input
-class="search"
-id="search"
-placeholder="🔎 Cari Kab/Kota..."
-oninput="renderDPD()">
+  <div class="section-title">
+    Monitoring 24 DPD
+  </div>
 
-<div id="dpdCards" class="cards">
 
-<div class="loading">
-Memuat data...
-</div>
+  <div class="controls">
 
-</div>
+
+    <input
+      type="text"
+      id="search"
+      placeholder="🔎 Cari Kabupaten/Kota..."
+      oninput="renderDPD()">
+
+
+    <select
+      id="filterStatus"
+      onchange="renderDPD()">
+
+      <option value="">
+        Semua Status
+      </option>
+
+      <option value="BELUM TERBENTUK">
+        Belum Terbentuk
+      </option>
+
+      <option value="DALAM PROSES">
+        Dalam Proses
+      </option>
+
+      <option value="PEMBENTUKAN SELESAI">
+        Pembentukan Selesai
+      </option>
+
+      <option value="SIAP DILANTIK">
+        Siap Dilantik
+      </option>
+
+      <option value="SUDAH DILANTIK">
+        Sudah Dilantik
+      </option>
+
+    </select>
+
+
+  </div>
+
+
+  <div
+    id="dpdList"
+    class="dpd-grid">
+
+    <div class="loading">
+      Memuat data DPD...
+    </div>
+
+  </div>
+
 
 </section>
 
 
-<!-- PETA -->
 
-<section id="peta" class="section">
+<!-- ==================================================
+     KOMUNIKASI
+================================================== -->
 
-<div class="page-title">
-Peta 24 Kab/Kota
-</div>
+<section
+  id="komunikasi"
+  class="section">
 
-<div class="page-sub">
-Sebaran struktur Muda Bergerak Sulawesi Selatan.
-</div>
 
-<div id="map"></div>
+  <div class="section-title">
+    Komunikasi DPW ↔ DPD
+  </div>
+
+
+  <div class="card">
+
+    <p class="info">
+
+      Fitur komunikasi akan digunakan
+      untuk mengirim informasi, instruksi,
+      undangan, dan pemberitahuan dari
+      DPW kepada DPD.
+
+    </p>
+
+    <br>
+
+    <p class="info">
+      📌 Modul komunikasi sedang disiapkan.
+    </p>
+
+  </div>
+
 
 </section>
 
 
-<!-- KOMUNIKASI -->
 
-<section id="komunikasi" class="section">
+<!-- ==================================================
+     LAPORAN
+================================================== -->
 
-<div class="page-title">
-Komunikasi
-</div>
+<section
+  id="laporan"
+  class="section">
 
-<div class="placeholder">
 
-<h3>💬 Komunikasi DPW ↔ DPD</h3>
+  <div class="section-title">
+    Laporan DPD
+  </div>
 
-<br>
 
-<p>
-Modul komunikasi akan digunakan untuk:
-</p>
+  <div class="card">
 
-<br>
+    <p class="info">
 
-<p>
-• Arahan DPW<br>
-• Undangan kegiatan<br>
-• Informasi organisasi<br>
-• Balasan dari DPD
-</p>
+      Modul laporan kegiatan DPD akan
+      terhubung dengan database pada
+      tahap berikutnya.
 
-</div>
+    </p>
+
+  </div>
+
 
 </section>
 
 
-<!-- LAPORAN -->
 
-<section id="laporan" class="section">
+<!-- ==================================================
+     AGENDA
+================================================== -->
 
-<div class="page-title">
-Laporan
-</div>
-
-<div class="placeholder">
-
-<h3>📑 Laporan DPD</h3>
-
-<br>
-
-<p>
-Modul laporan akan dikembangkan untuk
-pengiriman laporan kegiatan dan perkembangan
-struktur DPD ke DPW.
-</p>
-
-</div>
-
-</section>
+<section
+  id="agenda"
+  class="section">
 
 
-<!-- AGENDA -->
+  <div class="section-title">
+    Agenda Organisasi
+  </div>
 
-<section id="agenda" class="section">
 
-<div class="page-title">
-Agenda
-</div>
+  <div class="card">
 
-<div class="placeholder">
+    <p class="info">
 
-<h3>📅 Agenda Organisasi</h3>
+      Agenda kegiatan DPW dan DPD
+      akan ditampilkan pada modul ini.
 
-<br>
+    </p>
 
-<p>
-Agenda kegiatan DPW dan DPD akan ditampilkan
-di halaman ini.
-</p>
+  </div>
 
-</div>
 
 </section>
 
-</main>
+
+</div>
+
 
 
 <script>
 
-/* =========================
-SUPABASE
-========================= */
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
 "https://rgffzcpsofmjnqdfyolg.supabase.co";
@@ -572,632 +844,551 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_ZfZ1m8X7gadvnoAQh9XmNg_hyupNKb6";
 
+
 const supabaseClient =
 supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
 
-/* =========================
-DATA
-========================= */
 
-let dpdData=[];
-let bidangData=[];
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let dpdData = [];
+
 let map;
 
 
-/* =========================
-FORMAT NAMA
-========================= */
 
-function formatNama(nama){
+/* =====================================================
+   LOAD DATA SUPABASE
+===================================================== */
 
-if(!nama) return "-";
+async function loadDPD(){
 
-let n=String(nama).trim();
-
-if(
-n.toLowerCase().startsWith("kota ")
-||
-n.toLowerCase().startsWith("kab.")
-||
-n.toLowerCase().startsWith("kabupaten ")
-){
-return n;
-}
-
-if(
-n.toLowerCase()==="makassar" ||
-n.toLowerCase()==="parepare" ||
-n.toLowerCase()==="palopo"
-){
-return "Kota "+n;
-}
-
-return "Kab. "+n;
-
-}
+  const list =
+    document.getElementById("dpdList");
 
 
-/* =========================
-LOAD DATA
-========================= */
+  list.innerHTML =
+  `<div class="loading">
+    Memuat data dari Supabase...
+  </div>`;
 
-async function loadData(){
 
-try{
+  const { data, error } =
+    await supabaseClient
+      .from("dpd")
+      .select("*")
+      .order("id",{ascending:true});
 
-const dpdResult =
-await supabaseClient
-.from("DPD")
-.select("*")
-.order("id",{ascending:true});
 
-if(dpdResult.error)
-throw dpdResult.error;
+  if(error){
 
-const bidangResult =
-await supabaseClient
-.from("BIDANG_DPD")
-.select("*")
-.order("id",{ascending:true});
+    console.error(error);
 
-if(bidangResult.error)
-throw bidangResult.error;
 
-dpdData=dpdResult.data || [];
-bidangData=bidangResult.data || [];
+    list.innerHTML =
+    `<div class="error">
 
-renderDPD();
-updateDashboard();
+      Gagal mengambil data Supabase.
 
-}catch(error){
+      <br><br>
 
-console.error(error);
+      ${error.message}
 
-document.getElementById("dpdCards").innerHTML=`
+    </div>`;
 
-<div class="error">
+    return;
 
-<b>Gagal memuat data.</b>
+  }
 
-<br><br>
 
-${error.message}
+  dpdData =
+    data || [];
 
-</div>
 
-`;
+  updateStats();
 
-}
+  renderDPD();
+
+  initMap();
 
 }
 
 
-/* =========================
-GET BIDANG
-========================= */
 
-function getBidang(dpdId){
+/* =====================================================
+   UPDATE STATISTICS
+===================================================== */
 
-return bidangData.filter(
-item=>Number(item.dpd_id)===Number(dpdId)
-);
+function updateStats(){
+
+  const total =
+    dpdData.length;
+
+
+  const terbentuk =
+    dpdData.filter(x =>
+
+      x.status === "PEMBENTUKAN SELESAI" ||
+
+      x.status === "SIAP DILANTIK" ||
+
+      x.status === "SUDAH DILANTIK"
+
+    ).length;
+
+
+  const proses =
+    dpdData.filter(x =>
+      x.status === "DALAM PROSES"
+    ).length;
+
+
+  const dilantik =
+    dpdData.filter(x =>
+      x.status === "SUDAH DILANTIK"
+    ).length;
+
+
+  document.getElementById("totalDPD")
+    .textContent = total;
+
+
+  document.getElementById("terbentuk")
+    .textContent = terbentuk;
+
+
+  document.getElementById("proses")
+    .textContent = proses;
+
+
+  document.getElementById("dilantik")
+    .textContent = dilantik;
 
 }
 
 
-/* =========================
-RENDER DPD
-========================= */
+
+/* =====================================================
+   STATUS BADGE
+===================================================== */
+
+function statusClass(status){
+
+  if(status === "DALAM PROSES")
+    return "badge badge-proses";
+
+
+  if(status === "PEMBENTUKAN SELESAI")
+    return "badge badge-selesai";
+
+
+  if(status === "SIAP DILANTIK")
+    return "badge badge-lantik";
+
+
+  if(status === "SUDAH DILANTIK")
+    return "badge badge-selesai";
+
+
+  return "badge badge-belum";
+
+}
+
+
+
+/* =====================================================
+   RENDER DPD
+===================================================== */
 
 function renderDPD(){
 
-const container =
-document.getElementById("dpdCards");
+  const list =
+    document.getElementById("dpdList");
 
-const search =
-(document.getElementById("search")?.value || "")
-.toLowerCase();
 
-const filtered =
-dpdData.filter(item=>
-formatNama(item.nama)
-.toLowerCase()
-.includes(search)
-);
+  const search =
+    document.getElementById("search")
+      .value
+      .toLowerCase();
 
-if(filtered.length===0){
 
-container.innerHTML=`
+  const filter =
+    document.getElementById("filterStatus")
+      .value;
 
-<div class="placeholder">
 
-Data tidak ditemukan.
+  const filtered =
+    dpdData.filter(dpd => {
 
-</div>
 
-`;
+      const matchName =
+        (dpd.nama || "")
+          .toLowerCase()
+          .includes(search);
 
-return;
 
-}
+      const matchStatus =
+        !filter ||
+        dpd.status === filter;
 
-container.innerHTML =
-filtered.map(item=>{
 
-const fields =
-getBidang(item.id);
+      return matchName && matchStatus;
 
-const progress =
-Number(item.progress || 0);
+    });
 
-const status =
-item.status || "BELUM TERBENTUK";
 
-return `
+  if(filtered.length === 0){
 
-<div class="card">
+    list.innerHTML =
+    `<div class="empty">
 
-<div class="card-head">
+      Data DPD tidak ditemukan.
 
-<div class="card-title">
+    </div>`;
 
-${formatNama(item.nama)}
+    return;
 
-</div>
+  }
 
-<div class="badge">
 
-${status}
+  list.innerHTML =
+  filtered.map(dpd => {
 
-</div>
 
-</div>
+    const progress =
+      Number(dpd.progress || 0);
 
 
-<div class="progress-wrap">
+    return `
 
-<div class="progress-info">
+      <div class="dpd-card">
 
-<span>Progress DPD</span>
 
-<b>${progress}%</b>
+        <div class="dpd-name">
+          ${dpd.nama || "-"}
+        </div>
 
-</div>
 
-<div class="progress">
+        <div class="${statusClass(dpd.status)}">
+          ${dpd.status || "BELUM TERBENTUK"}
+        </div>
 
-<div
-class="progress-bar"
-style="width:${progress}%">
-</div>
 
-</div>
+        <div class="info">
 
-</div>
 
+          <b>Ketua:</b>
+          ${dpd.ketua || "Belum diisi"}
 
-<button
-class="detail-btn"
-onclick="toggleDetail(${item.id})">
+          <br>
 
-Lihat Struktur & Bidang
 
-</button>
+          <b>Sekretaris:</b>
+          ${dpd.sekretaris || "Belum diisi"}
 
+          <br>
 
-<div
-class="detail"
-id="detail-${item.id}">
 
-<div class="info-grid">
+          <b>Bendahara:</b>
+          ${dpd.bendahara || "Belum diisi"}
 
-<div class="info">
+          <br>
 
-<div class="info-label">
-Ketua
-</div>
 
-<div class="info-value">
-${item.ketua || "-"}
-</div>
+          <b>Sekretariat:</b>
+          ${dpd.sekretariat || "Belum diisi"}
 
-</div>
 
+        </div>
 
-<div class="info">
 
-<div class="info-label">
-Sekretaris
-</div>
+        <div class="progress-box">
 
-<div class="info-value">
-${item.sekretaris || "-"}
-</div>
 
-</div>
+          <div class="progress-bar">
 
+            <div
+              class="progress-fill"
+              style="width:${progress}%">
+            </div>
 
-<div class="info">
+          </div>
 
-<div class="info-label">
-Bendahara
-</div>
 
-<div class="info-value">
-${item.bendahara || "-"}
-</div>
+          <div class="progress-text">
+            Progress: ${progress}%
+          </div>
 
-</div>
 
+        </div>
 
-<div class="info">
 
-<div class="info-label">
-Sekretariat
-</div>
+      </div>
 
-<div class="info-value">
-${item.sekretariat || "-"}
-</div>
+    `;
 
-</div>
-
-</div>
-
-
-<div class="bidang-title">
-6 BIDANG DPD
-</div>
-
-
-${renderBidang(fields)}
-
-</div>
-
-</div>
-
-`;
-
-}).join("");
+  }).join("");
 
 }
 
 
-/* =========================
-RENDER BIDANG
-========================= */
 
-function renderBidang(fields){
+/* =====================================================
+   KOORDINAT 24 DPD
+===================================================== */
 
-if(!fields.length){
+const coordinates = {
 
-return `
-<div class="placeholder">
-Belum ada data bidang.
-</div>
-`;
 
-}
+  "Kota Makassar":
+  [-5.1477,119.4327],
 
-return fields.map(field=>{
 
-const progress =
-Number(field.progress || 0);
+  "Kota Parepare":
+  [-4.0135,119.6255],
 
-return `
 
-<div class="bidang">
+  "Kota Palopo":
+  [-2.9996,120.1985],
 
-<div class="bidang-name">
 
-${field.bidang || "-"}
+  "Bantaeng":
+  [-5.5167,120.0167],
 
-</div>
 
-<div class="bidang-row">
+  "Barru":
+  [-4.4333,119.6167],
 
-<b>Koor. Bidang:</b>
-${field.koor_bidang || "-"}
 
-</div>
+  "Bone":
+  [-4.5383,120.3279],
 
-<div class="bidang-row">
 
-<b>Anggota Bidang:</b>
-${field.anggota_bidang || "-"}
+  "Bulukumba":
+  [-5.5500,120.1833],
 
-</div>
 
-<div class="bidang-row">
+  "Enrekang":
+  [-3.5630,119.7730],
 
-<b>Status:</b>
-${field.status || "BELUM TERBENTUK"}
 
-</div>
+  "Gowa":
+  [-5.3167,119.7667],
 
-<div class="progress-info">
 
-<span>Progress</span>
+  "Jeneponto":
+  [-5.6772,119.7319],
 
-<b>${progress}%</b>
 
-</div>
+  "Kepulauan Selayar":
+  [-6.1333,120.4667],
 
-<div class="bidang-progress">
 
-<div style="width:${progress}%"></div>
+  "Luwu":
+  [-3.3833,120.3833],
 
-</div>
 
-</div>
+  "Luwu Timur":
+  [-2.5500,121.1667],
 
-`;
 
-}).join("");
+  "Luwu Utara":
+  [-2.6000,119.9833],
 
-}
 
+  "Maros":
+  [-5.0000,119.5667],
 
-/* =========================
-TOGGLE DETAIL
-========================= */
 
-function toggleDetail(id){
+  "Pangkajene dan Kepulauan":
+  [-4.8372,119.5450],
 
-const el =
-document.getElementById(
-"detail-"+id
-);
 
-if(!el) return;
+  "Pinrang":
+  [-3.7861,119.6522],
 
-el.classList.toggle("show");
 
-}
+  "Sidenreng Rappang":
+  [-3.8500,119.8500],
 
 
-/* =========================
-DASHBOARD
-========================= */
+  "Sinjai":
+  [-5.1200,120.2500],
 
-function updateDashboard(){
 
-const totalDPD =
-dpdData.length;
+  "Soppeng":
+  [-4.3500,119.8833],
 
-const totalBidang =
-bidangData.length;
 
-const aktif =
-bidangData.filter(
-x=>Number(x.progress || 0)===100
-).length;
+  "Takalar":
+  [-5.4167,119.4500],
 
-let average=0;
 
-if(totalBidang){
+  "Tana Toraja":
+  [-3.1000,119.8000],
 
-average =
-Math.round(
-bidangData.reduce(
-(sum,x)=>
-sum+Number(x.progress || 0),
-0
-)/totalBidang
-);
 
-}
+  "Toraja Utara":
+  [-2.9667,119.9000],
 
-document.getElementById("totalDPD")
-.innerText=totalDPD;
 
-document.getElementById("totalBidang")
-.innerText=totalBidang;
-
-document.getElementById("bidangAktif")
-.innerText=aktif;
-
-document.getElementById("avgProgress")
-.innerText=average+"%";
-
-
-document.getElementById("summary")
-.innerHTML=`
-
-<b>${totalDPD}</b> Kab/Kota terdaftar.
-
-<br><br>
-
-<b>${totalBidang}</b> bidang organisasi
-terdata dari seluruh DPD.
-
-<br><br>
-
-<b>${aktif}</b> bidang telah mencapai
-progress 100%.
-
-<br><br>
-
-Rata-rata progress bidang saat ini:
-<b>${average}%</b>.
-
-`;
-
-}
-
-
-/* =========================
-MAP
-========================= */
-
-const lokasi={
-
-"makassar":[-5.1477,119.4327],
-"parepare":[-4.0135,119.6255],
-"palopo":[-2.9996,120.1989],
-"bantaeng":[-5.5480,120.0050],
-"barru":[-4.4173,119.6175],
-"bone":[-4.5383,120.3195],
-"bulukumba":[-5.5500,120.2000],
-"enrekang":[-3.5636,119.7738],
-"gowa":[-5.3103,119.7426],
-"jeneponto":[-5.6772,119.7317],
-"kepulauan selayar":[-6.1260,120.5040],
-"luwu":[-3.2000,120.1500],
-"luwu timur":[-2.5833,121.3667],
-"luwu utara":[-2.6000,120.2500],
-"maros":[-5.0059,119.5727],
-"pangkajene dan kepulauan":[-4.8370,119.5500],
-"pinrang":[-3.7860,119.6522],
-"sidenreng rappang":[-3.7700,119.9500],
-"sinjai":[-5.1200,120.2500],
-"soppeng":[-4.3500,119.8833],
-"takalar":[-5.4167,119.4833],
-"tana toraja":[-3.1000,119.8000],
-"toraja utara":[-2.9000,119.8667],
-"wajo":[-4.0000,120.1000]
+  "Wajo":
+  [-4.0000,120.1167]
 
 };
 
 
-/* =========================
-INITIALIZE MAP
-========================= */
 
-function initializeMap(){
+/* =====================================================
+   INITIALIZE MAP
+===================================================== */
 
-if(window.mapInitialized)
-return;
-
-map =
-L.map("map")
-.setView([-4.5,120.0],7);
-
-L.tileLayer(
-"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-{
-attribution:
-"&copy; OpenStreetMap contributors"
-}
-).addTo(map);
+function initMap(){
 
 
-dpdData.forEach(item=>{
-
-const raw =
-String(item.nama || "")
-.toLowerCase()
-.trim();
-
-const key =
-raw
-.replace("kabupaten ","")
-.replace("kab.","")
-.replace("kota ","")
-.trim();
-
-if(!lokasi[key])
-return;
-
-const fields =
-getBidang(item.id);
-
-const totalFieldProgress =
-fields.length
-?
-Math.round(
-fields.reduce(
-(sum,x)=>
-sum+Number(x.progress || 0),
-0
-)/fields.length
-)
-:0;
+  if(map)
+    map.remove();
 
 
-L.marker(lokasi[key])
-.addTo(map)
-.bindPopup(`
+  map =
+    L.map("map")
+      .setView(
+        [-4.7,120.0],
+        7
+      );
 
-<b>${formatNama(item.nama)}</b>
 
-<br><br>
+  L.tileLayer(
 
-Status:
-<b>${item.status || "BELUM TERBENTUK"}</b>
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 
-<br>
+    {
 
-Progress DPD:
-<b>${Number(item.progress || 0)}%</b>
+      attribution:
+      "&copy; OpenStreetMap contributors"
 
-<br>
+    }
 
-Progress 6 Bidang:
-<b>${totalFieldProgress}%</b>
+  ).addTo(map);
 
-<br><br>
 
-Ketua:
-${item.ketua || "-"}
 
-`);
+  dpdData.forEach(dpd => {
 
-});
 
-window.mapInitialized=true;
+    const coord =
+      coordinates[dpd.nama];
+
+
+    if(!coord)
+      return;
+
+
+    const marker =
+      L.marker(coord)
+        .addTo(map);
+
+
+    marker.bindPopup(`
+
+      <b>${dpd.nama}</b>
+
+      <br><br>
+
+      <b>Status:</b>
+      ${dpd.status || "-"}
+
+      <br>
+
+      <b>Progress:</b>
+      ${dpd.progress || 0}%
+
+      <br><br>
+
+      <b>Ketua:</b>
+      ${dpd.ketua || "Belum diisi"}
+
+      <br>
+
+      <b>Sekretaris:</b>
+      ${dpd.sekretaris || "Belum diisi"}
+
+      <br>
+
+      <b>Bendahara:</b>
+      ${dpd.bendahara || "Belum diisi"}
+
+    `);
+
+
+  });
 
 }
 
 
-/* =========================
-NAVIGATION
-========================= */
 
-function showSection(sectionId,button){
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
-document.querySelectorAll(".section")
-.forEach(section=>{
-section.classList.remove("active");
-});
-
-document
-.getElementById(sectionId)
-.classList.add("active");
+function showSection(id,button){
 
 
-document.querySelectorAll(".nav button")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
+  document
+    .querySelectorAll(".section")
+    .forEach(section => {
 
-button.classList.add("active");
+      section.classList.remove("active");
+
+    });
 
 
-if(
-sectionId==="peta" &&
-!window.mapInitialized
-){
+  document
+    .getElementById(id)
+    .classList.add("active");
 
-setTimeout(
-initializeMap,
-100
-);
+
+  document
+    .querySelectorAll("nav button")
+    .forEach(btn => {
+
+      btn.classList.remove("active");
+
+    });
+
+
+  button.classList.add("active");
+
+
+
+  /* PERBAIKI UKURAN PETA
+     KETIKA KEMBALI KE DASHBOARD */
+
+  if(id === "dashboard" && map){
+
+    setTimeout(() => {
+
+      map.invalidateSize();
+
+    },200);
+
+  }
 
 }
 
-}
 
 
-/* =========================
-START
-========================= */
+/* =====================================================
+   START
+===================================================== */
 
-loadData();
+loadDPD();
 
 </script>
 
