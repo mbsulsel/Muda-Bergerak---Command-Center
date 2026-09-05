@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>MB Command Center</title>
 
   <style>
@@ -10,34 +11,39 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
-      background: #f4f6f8;
-      color: #17202a;
+      background: #f5f5f5;
+      color: #171717;
     }
 
+    /* HEADER */
     .header {
-      background: #111827;
+      background: linear-gradient(135deg, #ff7a00, #ff9800);
       color: white;
       padding: 25px 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     }
 
     .header h1 {
       font-size: 22px;
-      margin-bottom: 6px;
+      font-weight: 800;
     }
 
     .header p {
-      color: #cbd5e1;
+      margin-top: 6px;
       font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 2px;
     }
 
+    /* CONTAINER */
     .container {
-      padding: 20px;
       max-width: 1200px;
       margin: auto;
+      padding: 20px;
     }
 
     .welcome {
@@ -45,14 +51,16 @@
     }
 
     .welcome h2 {
-      font-size: 24px;
-      margin-bottom: 5px;
+      font-size: 26px;
+      margin-bottom: 6px;
     }
 
     .welcome p {
-      color: #64748b;
+      color: #666;
+      font-size: 14px;
     }
 
+    /* STATISTICS */
     .stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -60,62 +68,161 @@
       margin-bottom: 25px;
     }
 
-    .card {
+    .stat-card {
       background: white;
-      border-radius: 14px;
       padding: 20px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      border-radius: 15px;
+      border-top: 5px solid #ff7a00;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    .card .number {
-      font-size: 30px;
-      font-weight: bold;
-      margin-top: 10px;
+    .stat-title {
+      color: #666;
+      font-size: 13px;
     }
 
-    .card p {
-      color: #64748b;
-      font-size: 14px;
+    .stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      margin-top: 8px;
+      color: #171717;
     }
 
+    /* SECTION */
     .section {
       background: white;
-      border-radius: 14px;
+      border-radius: 15px;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    .section h3 {
-      margin-bottom: 15px;
-    }
-
-    .map {
-      height: 300px;
-      background: #e2e8f0;
-      border-radius: 12px;
+    .section-title {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      color: #64748b;
-      text-align: center;
+      margin-bottom: 18px;
     }
 
+    .section-title h3 {
+      font-size: 18px;
+    }
+
+    .badge {
+      background: #fff1e6;
+      color: #ff6b00;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* MAP */
+    .map {
+      height: 320px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, #fff3e6, #ffe0bf);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border: 2px dashed #ff9800;
+    }
+
+    .map-content {
+      color: #ff6b00;
+    }
+
+    .map-content .icon {
+      font-size: 55px;
+      margin-bottom: 10px;
+    }
+
+    .map-content h4 {
+      font-size: 20px;
+    }
+
+    .map-content p {
+      margin-top: 5px;
+      color: #777;
+    }
+
+    /* DPD */
     .dpd-list {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
 
     .dpd {
-      padding: 13px;
-      background: #f8fafc;
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-left: 5px solid #ff7a00;
+      padding: 15px;
       border-radius: 10px;
-      border-left: 4px solid #111827;
-      font-size: 14px;
+      transition: 0.2s;
     }
 
+    .dpd:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+    }
+
+    .dpd strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 8px;
+      border-radius: 20px;
+      background: #eee;
+      color: #777;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    /* MENU */
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .menu-item {
+      background: #171717;
+      color: white;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .menu-item span {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .menu-item:hover {
+      background: #ff7a00;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #888;
+      font-size: 12px;
+    }
+
+    /* MOBILE */
     @media (max-width: 800px) {
+
       .stats {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -123,19 +230,44 @@
       .dpd-list {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .menu {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 500px) {
+
+      .header h1 {
+        font-size: 18px;
+      }
+
+      .container {
+        padding: 15px;
+      }
+
+      .welcome h2 {
+        font-size: 22px;
+      }
+
       .stats {
-        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 15px;
+      }
+
+      .stat-number {
+        font-size: 26px;
       }
 
       .dpd-list {
         grid-template-columns: 1fr;
       }
 
-      .welcome h2 {
-        font-size: 20px;
+      .menu {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -143,6 +275,7 @@
 
 <body>
 
+  <!-- HEADER -->
   <div class="header">
     <h1>MUDA BERGERAK PROV. SULAWESI SELATAN</h1>
     <p>COMMAND CENTER</p>
@@ -150,85 +283,263 @@
 
   <div class="container">
 
+    <!-- WELCOME -->
     <div class="welcome">
       <h2>Command Center</h2>
-      <p>Pusat monitoring dan koordinasi Muda Bergerak Sulawesi Selatan</p>
+      <p>Pusat monitoring, koordinasi dan informasi organisasi.</p>
     </div>
 
+    <!-- STATISTICS -->
     <div class="stats">
 
-      <div class="card">
-        <p>Total DPD</p>
-        <div class="number">24</div>
+      <div class="stat-card">
+        <div class="stat-title">TOTAL DPD</div>
+        <div class="stat-number">24</div>
       </div>
 
-      <div class="card">
-        <p>Sudah Terbentuk</p>
-        <div class="number">0</div>
+      <div class="stat-card">
+        <div class="stat-title">SUDAH TERBENTUK</div>
+        <div class="stat-number">0</div>
       </div>
 
-      <div class="card">
-        <p>Siap Dilantik</p>
-        <div class="number">0</div>
+      <div class="stat-card">
+        <div class="stat-title">SIAP DILANTIK</div>
+        <div class="stat-number">0</div>
       </div>
 
-      <div class="card">
-        <p>Dalam Proses</p>
-        <div class="number">0</div>
+      <div class="stat-card">
+        <div class="stat-title">DALAM PROSES</div>
+        <div class="stat-number">0</div>
       </div>
 
     </div>
 
+    <!-- MENU -->
     <div class="section">
-      <h3>🗺️ Monitoring Wilayah</h3>
+
+      <div class="section-title">
+        <h3>⚡ Command Menu</h3>
+        <div class="badge">DPW</div>
+      </div>
+
+      <div class="menu">
+
+        <div class="menu-item">
+          <span>🗺️</span>
+          Peta DPD
+        </div>
+
+        <div class="menu-item">
+          <span>📊</span>
+          Monitoring
+        </div>
+
+        <div class="menu-item">
+          <span>📩</span>
+          Komunikasi
+        </div>
+
+        <div class="menu-item">
+          <span>📄</span>
+          Laporan
+        </div>
+
+        <div class="menu-item">
+          <span>📅</span>
+          Agenda
+        </div>
+
+        <div class="menu-item">
+          <span>🔔</span>
+          Notifikasi
+        </div>
+
+        <div class="menu-item">
+          <span>👥</span>
+          Anggota
+        </div>
+
+        <div class="menu-item">
+          <span>⚙️</span>
+          Pengaturan
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MAP -->
+    <div class="section">
+
+      <div class="section-title">
+        <h3>🗺️ Monitoring Wilayah</h3>
+        <div class="badge">24 DPD</div>
+      </div>
 
       <div class="map">
-        PETA SULAWESI SELATAN<br>
-        24 DPD KABUPATEN/KOTA
+
+        <div class="map-content">
+
+          <div class="icon">🗺️</div>
+
+          <h4>SULAWESI SELATAN</h4>
+
+          <p>
+            Monitoring 24 DPD Kabupaten/Kota
+          </p>
+
+        </div>
+
       </div>
+
     </div>
 
+    <!-- DPD -->
     <div class="section">
-      <h3>📍 24 DPD Kabupaten/Kota</h3>
+
+      <div class="section-title">
+
+        <h3>📍 24 DPD Kabupaten/Kota</h3>
+
+        <div class="badge">
+          Monitoring
+        </div>
+
+      </div>
 
       <div class="dpd-list">
 
-        <div class="dpd">DPD Kota Makassar</div>
-        <div class="dpd">DPD Kota Parepare</div>
-        <div class="dpd">DPD Kota Palopo</div>
+        <div class="dpd">
+          <strong>DPD Kota Makassar</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
 
-        <div class="dpd">DPD Bantaeng</div>
-        <div class="dpd">DPD Barru</div>
-        <div class="dpd">DPD Bone</div>
+        <div class="dpd">
+          <strong>DPD Kota Parepare</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
 
-        <div class="dpd">DPD Bulukumba</div>
-        <div class="dpd">DPD Enrekang</div>
-        <div class="dpd">DPD Gowa</div>
+        <div class="dpd">
+          <strong>DPD Kota Palopo</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
 
-        <div class="dpd">DPD Jeneponto</div>
-        <div class="dpd">DPD Kepulauan Selayar</div>
-        <div class="dpd">DPD Luwu</div>
+        <div class="dpd">
+          <strong>DPD Bantaeng</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
 
-        <div class="dpd">DPD Luwu Timur</div>
-        <div class="dpd">DPD Luwu Utara</div>
-        <div class="dpd">DPD Maros</div>
+        <div class="dpd">
+          <strong>DPD Barru</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
 
-        <div class="dpd">DPD Pangkajene dan Kepulauan</div>
-        <div class="dpd">DPD Pinrang</div>
-        <div class="dpd">DPD Sidenreng Rappang</div>
+        <div class="dpd">
+          <strong>DPD Bone</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
 
-        <div class="dpd">DPD Sinjai</div>
-        <div class="dpd">DPD Soppeng</div>
-        <div class="dpd">DPD Takalar</div>
+        <div class="dpd">
+          <strong>DPD Bulukumba</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
 
-        <div class="dpd">DPD Tana Toraja</div>
-        <div class="dpd">DPD Toraja Utara</div>
-        <div class="dpd">DPD Wajo</div>
+        <div class="dpd">
+          <strong>DPD Enrekang</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Gowa</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Jeneponto</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Kepulauan Selayar</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Luwu</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Luwu Timur</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Luwu Utara</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Maros</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Pangkajene dan Kepulauan</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Pinrang</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Sidenreng Rappang</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Sinjai</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Soppeng</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Takalar</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Tana Toraja</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Toraja Utara</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
+
+        <div class="dpd">
+          <strong>DPD Wajo</strong>
+          <span class="status">Belum diperbarui</span>
+        </div>
 
       </div>
+
     </div>
 
   </div>
+
+  <footer>
+    © 2026 MUDA BERGERAK PROV. SULAWESI SELATAN
+    <br>
+    COMMAND CENTER
+  </footer>
 
 </body>
 </html>
