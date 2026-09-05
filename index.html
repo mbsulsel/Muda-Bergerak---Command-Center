@@ -33,10 +33,11 @@ body{
   display:block;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header{
   background:#171717;
-  color:white;
+  color:#fff;
   padding:18px 20px;
   border-bottom:4px solid #ff7a00;
 }
@@ -78,7 +79,8 @@ header{
   margin-top:5px;
 }
 
-/* MENU */
+/* ================= MENU ================= */
+
 nav{
   background:#222;
   overflow-x:auto;
@@ -108,7 +110,8 @@ nav button.active{
   color:#fff;
 }
 
-/* CONTENT */
+/* ================= CONTENT ================= */
+
 .container{
   max-width:1200px;
   margin:auto;
@@ -127,7 +130,8 @@ nav button.active{
   font-size:14px;
 }
 
-/* CARDS */
+/* ================= SUMMARY ================= */
+
 .summary{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -136,7 +140,7 @@ nav button.active{
 }
 
 .card{
-  background:white;
+  background:#fff;
   border-radius:12px;
   padding:18px;
   box-shadow:0 3px 12px rgba(0,0,0,.08);
@@ -155,9 +159,10 @@ nav button.active{
   color:#ff7a00;
 }
 
-/* MAP */
+/* ================= MAP ================= */
+
 .map-box{
-  background:white;
+  background:#fff;
   border-radius:12px;
   padding:10px;
   box-shadow:0 3px 12px rgba(0,0,0,.08);
@@ -168,9 +173,10 @@ nav button.active{
   border-radius:9px;
 }
 
-/* MONITORING */
+/* ================= MONITORING ================= */
+
 .toolbar{
-  background:white;
+  background:#fff;
   padding:15px;
   border-radius:12px;
   margin-bottom:15px;
@@ -191,7 +197,7 @@ nav button.active{
 }
 
 .dpd-card{
-  background:white;
+  background:#fff;
   border-radius:14px;
   margin-bottom:18px;
   box-shadow:0 3px 14px rgba(0,0,0,.08);
@@ -200,7 +206,7 @@ nav button.active{
 
 .dpd-head{
   background:#171717;
-  color:white;
+  color:#fff;
   padding:17px;
   display:flex;
   justify-content:space-between;
@@ -324,9 +330,10 @@ nav button.active{
   color:#777;
 }
 
-/* OTHER CONTENT */
+/* ================= PANEL ================= */
+
 .panel{
-  background:white;
+  background:#fff;
   padding:22px;
   border-radius:12px;
   box-shadow:0 3px 12px rgba(0,0,0,.07);
@@ -351,7 +358,8 @@ nav button.active{
   color:#777;
 }
 
-/* QRIS */
+/* ================= QRIS ================= */
+
 .qris{
   text-align:center;
 }
@@ -363,7 +371,8 @@ nav button.active{
   margin-top:15px;
 }
 
-/* JOIN */
+/* ================= JOIN ================= */
+
 .join-form{
   max-width:650px;
   margin:auto;
@@ -397,7 +406,7 @@ nav button.active{
 .btn{
   border:0;
   background:#ff7a00;
-  color:white;
+  color:#fff;
   padding:12px 20px;
   border-radius:8px;
   font-weight:800;
@@ -408,10 +417,11 @@ nav button.active{
   background:#e56800;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
+
 footer{
   background:#171717;
-  color:white;
+  color:#fff;
   margin-top:30px;
   padding:28px 20px;
   border-top:4px solid #ff7a00;
@@ -461,7 +471,8 @@ footer{
   text-align:center;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
+
 @media(max-width:800px){
 
   .summary{
@@ -529,34 +540,67 @@ footer{
 <!-- =====================================================
  DASHBOARD
 ===================================================== -->
+
 <section class="page active" id="dashboard">
 
 <header>
   <div class="header-inner">
-    <img src="1000583091-removebg-preview.png" class="logo">
+
+    <img
+      src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+      class="logo"
+      alt="Logo Muda Bergerak">
+
     <div class="header-title">
       <h1>MUDA BERGERAK SULAWESI SELATAN</h1>
       <h2>COMMAND CENTER</h2>
       <p>Pusat Informasi dan Koordinasi Organisasi</p>
     </div>
+
   </div>
 </header>
 
 <nav>
 <div class="nav-inner">
-<button class="active" onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-<button onclick="showPage('monitoring',this)">📊 Monitoring</button>
-<button onclick="showPage('pemberitahuan',this)">🔔 Pemberitahuan</button>
-<button onclick="showPage('laporan',this)">📑 Laporan</button>
-<button onclick="showPage('agenda',this)">📅 Agenda</button>
-<button onclick="showPage('support',this)">🤝 Support Us</button>
-<button onclick="showPage('join',this)">🚀 Join With Us</button>
+
+<button class="active"
+onclick="showPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button onclick="showPage('monitoring',this)">
+📊 Monitoring
+</button>
+
+<button onclick="showPage('pemberitahuan',this)">
+🔔 Pemberitahuan
+</button>
+
+<button onclick="showPage('laporan',this)">
+📑 Laporan
+</button>
+
+<button onclick="showPage('agenda',this)">
+📅 Agenda
+</button>
+
+<button onclick="showPage('support',this)">
+🤝 Support Us
+</button>
+
+<button onclick="showPage('join',this)">
+🚀 Join With Us
+</button>
+
 </div>
 </nav>
 
 <div class="container">
 
-<h2 class="section-title">Dashboard</h2>
+<h2 class="section-title">
+Dashboard
+</h2>
+
 <p class="section-subtitle">
 Monitoring perkembangan pembentukan DPD Muda Bergerak Sulawesi Selatan.
 </p>
@@ -592,20 +636,29 @@ Monitoring perkembangan pembentukan DPD Muda Bergerak Sulawesi Selatan.
 </div>
 
 <footer>
+
 <div class="footer-inner">
 
 <div class="footer-logo">
-<img src="1000583091-removebg-preview.png">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+alt="Logo">
+
 <div class="footer-title">
 MUDA BERGERAK SULAWESI SELATAN
 </div>
+
 </div>
 
 <div class="footer-content">
 
 <div>
 <h4>Alamat Sekretariat</h4>
-<p>Jl. Ance Dg. Ngoyo No. 8D, Panakkukang - Kota Makassar</p>
+<p>
+Jl. Ance Dg. Ngoyo No. 8D,
+Panakkukang - Kota Makassar
+</p>
 </div>
 
 <div>
@@ -628,6 +681,7 @@ MUDA BERGERAK SULAWESI SELATAN
 </div>
 
 </div>
+
 </footer>
 
 </section>
@@ -636,34 +690,79 @@ MUDA BERGERAK SULAWESI SELATAN
 <!-- =====================================================
  MONITORING
 ===================================================== -->
+
 <section class="page" id="monitoring">
 
 <header>
+
 <div class="header-inner">
-<img src="1000583091-removebg-preview.png" class="logo">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+class="logo"
+alt="Logo Muda Bergerak">
+
 <div class="header-title">
-<h1>MUDA BERGERAK SULAWESI SELATAN</h1>
+
+<h1>
+MUDA BERGERAK SULAWESI SELATAN
+</h1>
+
 <h2>COMMAND CENTER</h2>
-<p>Pusat Informasi dan Koordinasi Organisasi</p>
+
+<p>
+Pusat Informasi dan Koordinasi Organisasi
+</p>
+
 </div>
+
 </div>
+
 </header>
 
 <nav>
+
 <div class="nav-inner">
-<button onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-<button class="active" onclick="showPage('monitoring',this)">📊 Monitoring</button>
-<button onclick="showPage('pemberitahuan',this)">🔔 Pemberitahuan</button>
-<button onclick="showPage('laporan',this)">📑 Laporan</button>
-<button onclick="showPage('agenda',this)">📅 Agenda</button>
-<button onclick="showPage('support',this)">🤝 Support Us</button>
-<button onclick="showPage('join',this)">🚀 Join With Us</button>
+
+<button onclick="showPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button class="active"
+onclick="showPage('monitoring',this)">
+📊 Monitoring
+</button>
+
+<button onclick="showPage('pemberitahuan',this)">
+🔔 Pemberitahuan
+</button>
+
+<button onclick="showPage('laporan',this)">
+📑 Laporan
+</button>
+
+<button onclick="showPage('agenda',this)">
+📅 Agenda
+</button>
+
+<button onclick="showPage('support',this)">
+🤝 Support Us
+</button>
+
+<button onclick="showPage('join',this)">
+🚀 Join With Us
+</button>
+
 </div>
+
 </nav>
 
 <div class="container">
 
-<h2 class="section-title">Monitoring DPD</h2>
+<h2 class="section-title">
+Monitoring DPD
+</h2>
+
 <p class="section-subtitle">
 Data struktur dan progres pembentukan DPD Muda Bergerak Sulawesi Selatan.
 </p>
@@ -676,37 +775,61 @@ type="text"
 placeholder="🔎 Cari Kabupaten / Kota...">
 
 <select id="filterStatus">
-<option value="ALL">Semua Status</option>
-<option value="SUDAH TERBENTUK">Sudah Terbentuk</option>
-<option value="DALAM PROSES">Dalam Proses</option>
-<option value="BELUM TERBENTUK">Belum Terbentuk</option>
+
+<option value="ALL">
+Semua Status
+</option>
+
+<option value="SUDAH TERBENTUK">
+Sudah Terbentuk
+</option>
+
+<option value="DALAM PROSES">
+Dalam Proses
+</option>
+
+<option value="BELUM TERBENTUK">
+Belum Terbentuk
+</option>
+
 </select>
 
 </div>
 
 <div id="monitoringList">
+
 <div class="empty-state">
 Memuat data...
 </div>
+
 </div>
 
 </div>
 
 <footer>
+
 <div class="footer-inner">
 
 <div class="footer-logo">
-<img src="1000583091-removebg-preview.png">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+alt="Logo">
+
 <div class="footer-title">
 MUDA BERGERAK SULAWESI SELATAN
 </div>
+
 </div>
 
 <div class="footer-content">
 
 <div>
 <h4>Alamat Sekretariat</h4>
-<p>Jl. Ance Dg. Ngoyo No. 8D, Panakkukang - Kota Makassar</p>
+<p>
+Jl. Ance Dg. Ngoyo No. 8D,
+Panakkukang - Kota Makassar
+</p>
 </div>
 
 <div>
@@ -729,6 +852,7 @@ MUDA BERGERAK SULAWESI SELATAN
 </div>
 
 </div>
+
 </footer>
 
 </section>
@@ -737,34 +861,79 @@ MUDA BERGERAK SULAWESI SELATAN
 <!-- =====================================================
  PEMBERITAHUAN
 ===================================================== -->
+
 <section class="page" id="pemberitahuan">
 
 <header>
+
 <div class="header-inner">
-<img src="1000583091-removebg-preview.png" class="logo">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+class="logo"
+alt="Logo Muda Bergerak">
+
 <div class="header-title">
-<h1>MUDA BERGERAK SULAWESI SELATAN</h1>
+
+<h1>
+MUDA BERGERAK SULAWESI SELATAN
+</h1>
+
 <h2>COMMAND CENTER</h2>
-<p>Pusat Informasi dan Koordinasi Organisasi</p>
+
+<p>
+Pusat Informasi dan Koordinasi Organisasi
+</p>
+
 </div>
+
 </div>
+
 </header>
 
 <nav>
+
 <div class="nav-inner">
-<button onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-<button onclick="showPage('monitoring',this)">📊 Monitoring</button>
-<button class="active" onclick="showPage('pemberitahuan',this)">🔔 Pemberitahuan</button>
-<button onclick="showPage('laporan',this)">📑 Laporan</button>
-<button onclick="showPage('agenda',this)">📅 Agenda</button>
-<button onclick="showPage('support',this)">🤝 Support Us</button>
-<button onclick="showPage('join',this)">🚀 Join With Us</button>
+
+<button onclick="showPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button onclick="showPage('monitoring',this)">
+📊 Monitoring
+</button>
+
+<button class="active"
+onclick="showPage('pemberitahuan',this)">
+🔔 Pemberitahuan
+</button>
+
+<button onclick="showPage('laporan',this)">
+📑 Laporan
+</button>
+
+<button onclick="showPage('agenda',this)">
+📅 Agenda
+</button>
+
+<button onclick="showPage('support',this)">
+🤝 Support Us
+</button>
+
+<button onclick="showPage('join',this)">
+🚀 Join With Us
+</button>
+
 </div>
+
 </nav>
 
 <div class="container">
 
-<h2 class="section-title">Pemberitahuan</h2>
+<h2 class="section-title">
+Pemberitahuan
+</h2>
+
 <p class="section-subtitle">
 Informasi dan pemberitahuan organisasi.
 </p>
@@ -772,18 +941,27 @@ Informasi dan pemberitahuan organisasi.
 <div class="panel">
 
 <div class="notice">
-<strong>Command Center MB Sulsel</strong>
+
+<strong>
+Command Center MB Sulsel
+</strong>
+
 <p>
-Website masih dalam tahap pengembangan dan akan terus diperbarui
-sesuai kebutuhan organisasi.
+Website masih dalam tahap pengembangan dan akan terus diperbarui sesuai kebutuhan organisasi.
 </p>
+
 </div>
 
 <div class="notice">
-<strong>Monitoring DPD</strong>
+
+<strong>
+Monitoring DPD
+</strong>
+
 <p>
 Data pembentukan DPD dapat dipantau melalui menu Monitoring.
 </p>
+
 </div>
 
 </div>
@@ -791,20 +969,29 @@ Data pembentukan DPD dapat dipantau melalui menu Monitoring.
 </div>
 
 <footer>
+
 <div class="footer-inner">
 
 <div class="footer-logo">
-<img src="1000583091-removebg-preview.png">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+alt="Logo">
+
 <div class="footer-title">
 MUDA BERGERAK SULAWESI SELATAN
 </div>
+
 </div>
 
 <div class="footer-content">
 
 <div>
 <h4>Alamat Sekretariat</h4>
-<p>Jl. Ance Dg. Ngoyo No. 8D, Panakkukang - Kota Makassar</p>
+<p>
+Jl. Ance Dg. Ngoyo No. 8D,
+Panakkukang - Kota Makassar
+</p>
 </div>
 
 <div>
@@ -827,6 +1014,7 @@ MUDA BERGERAK SULAWESI SELATAN
 </div>
 
 </div>
+
 </footer>
 
 </section>
@@ -835,61 +1023,117 @@ MUDA BERGERAK SULAWESI SELATAN
 <!-- =====================================================
  LAPORAN
 ===================================================== -->
+
 <section class="page" id="laporan">
 
 <header>
+
 <div class="header-inner">
-<img src="1000583091-removebg-preview.png" class="logo">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+class="logo"
+alt="Logo Muda Bergerak">
+
 <div class="header-title">
-<h1>MUDA BERGERAK SULAWESI SELATAN</h1>
+
+<h1>
+MUDA BERGERAK SULAWESI SELATAN
+</h1>
+
 <h2>COMMAND CENTER</h2>
-<p>Pusat Informasi dan Koordinasi Organisasi</p>
+
+<p>
+Pusat Informasi dan Koordinasi Organisasi
+</p>
+
 </div>
+
 </div>
+
 </header>
 
 <nav>
+
 <div class="nav-inner">
-<button onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-<button onclick="showPage('monitoring',this)">📊 Monitoring</button>
-<button onclick="showPage('pemberitahuan',this)">🔔 Pemberitahuan</button>
-<button class="active" onclick="showPage('laporan',this)">📑 Laporan</button>
-<button onclick="showPage('agenda',this)">📅 Agenda</button>
-<button onclick="showPage('support',this)">🤝 Support Us</button>
-<button onclick="showPage('join',this)">🚀 Join With Us</button>
+
+<button onclick="showPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button onclick="showPage('monitoring',this)">
+📊 Monitoring
+</button>
+
+<button onclick="showPage('pemberitahuan',this)">
+🔔 Pemberitahuan
+</button>
+
+<button class="active"
+onclick="showPage('laporan',this)">
+📑 Laporan
+</button>
+
+<button onclick="showPage('agenda',this)">
+📅 Agenda
+</button>
+
+<button onclick="showPage('support',this)">
+🤝 Support Us
+</button>
+
+<button onclick="showPage('join',this)">
+🚀 Join With Us
+</button>
+
 </div>
+
 </nav>
 
 <div class="container">
 
-<h2 class="section-title">Laporan</h2>
+<h2 class="section-title">
+Laporan
+</h2>
+
 <p class="section-subtitle">
 Pusat laporan kegiatan dan perkembangan organisasi.
 </p>
 
 <div class="panel">
+
 <div class="empty-state">
 Belum ada laporan yang dipublikasikan.
 </div>
+
 </div>
 
 </div>
 
 <footer>
+
 <div class="footer-inner">
 
 <div class="footer-logo">
-<img src="1000583091-removebg-preview.png">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+alt="Logo">
+
 <div class="footer-title">
 MUDA BERGERAK SULAWESI SELATAN
 </div>
+
 </div>
 
 <div class="footer-content">
 
 <div>
 <h4>Alamat Sekretariat</h4>
-<p>Jl. Ance Dg. Ngoyo No. 8D, Panakkukang - Kota Makassar</p>
+<p>
+Jl. Ance Dg. Ngoyo No. 8D,
+Panakkukang - Kota Makassar
+</p>
 </div>
 
 <div>
@@ -912,6 +1156,7 @@ MUDA BERGERAK SULAWESI SELATAN
 </div>
 
 </div>
+
 </footer>
 
 </section>
@@ -920,61 +1165,117 @@ MUDA BERGERAK SULAWESI SELATAN
 <!-- =====================================================
  AGENDA
 ===================================================== -->
+
 <section class="page" id="agenda">
 
 <header>
+
 <div class="header-inner">
-<img src="1000583091-removebg-preview.png" class="logo">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+class="logo"
+alt="Logo Muda Bergerak">
+
 <div class="header-title">
-<h1>MUDA BERGERAK SULAWESI SELATAN</h1>
+
+<h1>
+MUDA BERGERAK SULAWESI SELATAN
+</h1>
+
 <h2>COMMAND CENTER</h2>
-<p>Pusat Informasi dan Koordinasi Organisasi</p>
+
+<p>
+Pusat Informasi dan Koordinasi Organisasi
+</p>
+
 </div>
+
 </div>
+
 </header>
 
 <nav>
+
 <div class="nav-inner">
-<button onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-<button onclick="showPage('monitoring',this)">📊 Monitoring</button>
-<button onclick="showPage('pemberitahuan',this)">🔔 Pemberitahuan</button>
-<button onclick="showPage('laporan',this)">📑 Laporan</button>
-<button class="active" onclick="showPage('agenda',this)">📅 Agenda</button>
-<button onclick="showPage('support',this)">🤝 Support Us</button>
-<button onclick="showPage('join',this)">🚀 Join With Us</button>
+
+<button onclick="showPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button onclick="showPage('monitoring',this)">
+📊 Monitoring
+</button>
+
+<button onclick="showPage('pemberitahuan',this)">
+🔔 Pemberitahuan
+</button>
+
+<button onclick="showPage('laporan',this)">
+📑 Laporan
+</button>
+
+<button class="active"
+onclick="showPage('agenda',this)">
+📅 Agenda
+</button>
+
+<button onclick="showPage('support',this)">
+🤝 Support Us
+</button>
+
+<button onclick="showPage('join',this)">
+🚀 Join With Us
+</button>
+
 </div>
+
 </nav>
 
 <div class="container">
 
-<h2 class="section-title">Agenda</h2>
+<h2 class="section-title">
+Agenda
+</h2>
+
 <p class="section-subtitle">
 Agenda kegiatan Muda Bergerak Sulawesi Selatan.
 </p>
 
 <div class="panel">
+
 <div class="empty-state">
 Belum ada agenda yang dipublikasikan.
 </div>
+
 </div>
 
 </div>
 
 <footer>
+
 <div class="footer-inner">
 
 <div class="footer-logo">
-<img src="1000583091-removebg-preview.png">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+alt="Logo">
+
 <div class="footer-title">
 MUDA BERGERAK SULAWESI SELATAN
 </div>
+
 </div>
 
 <div class="footer-content">
 
 <div>
 <h4>Alamat Sekretariat</h4>
-<p>Jl. Ance Dg. Ngoyo No. 8D, Panakkukang - Kota Makassar</p>
+<p>
+Jl. Ance Dg. Ngoyo No. 8D,
+Panakkukang - Kota Makassar
+</p>
 </div>
 
 <div>
@@ -997,6 +1298,7 @@ MUDA BERGERAK SULAWESI SELATAN
 </div>
 
 </div>
+
 </footer>
 
 </section>
@@ -1005,45 +1307,91 @@ MUDA BERGERAK SULAWESI SELATAN
 <!-- =====================================================
  SUPPORT US
 ===================================================== -->
+
 <section class="page" id="support">
 
 <header>
+
 <div class="header-inner">
-<img src="1000583091-removebg-preview.png" class="logo">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+class="logo"
+alt="Logo Muda Bergerak">
+
 <div class="header-title">
-<h1>MUDA BERGERAK SULAWESI SELATAN</h1>
+
+<h1>
+MUDA BERGERAK SULAWESI SELATAN
+</h1>
+
 <h2>COMMAND CENTER</h2>
-<p>Pusat Informasi dan Koordinasi Organisasi</p>
+
+<p>
+Pusat Informasi dan Koordinasi Organisasi
+</p>
+
 </div>
+
 </div>
+
 </header>
 
 <nav>
+
 <div class="nav-inner">
-<button onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-<button onclick="showPage('monitoring',this)">📊 Monitoring</button>
-<button onclick="showPage('pemberitahuan',this)">🔔 Pemberitahuan</button>
-<button onclick="showPage('laporan',this)">📑 Laporan</button>
-<button onclick="showPage('agenda',this)">📅 Agenda</button>
-<button class="active" onclick="showPage('support',this)">🤝 Support Us</button>
-<button onclick="showPage('join',this)">🚀 Join With Us</button>
+
+<button onclick="showPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button onclick="showPage('monitoring',this)">
+📊 Monitoring
+</button>
+
+<button onclick="showPage('pemberitahuan',this)">
+🔔 Pemberitahuan
+</button>
+
+<button onclick="showPage('laporan',this)">
+📑 Laporan
+</button>
+
+<button onclick="showPage('agenda',this)">
+📅 Agenda
+</button>
+
+<button class="active"
+onclick="showPage('support',this)">
+🤝 Support Us
+</button>
+
+<button onclick="showPage('join',this)">
+🚀 Join With Us
+</button>
+
 </div>
+
 </nav>
 
 <div class="container">
 
-<h2 class="section-title">Support Us</h2>
+<h2 class="section-title">
+Support Us
+</h2>
+
 <p class="section-subtitle">
 Dukung gerakan Muda Bergerak Sulawesi Selatan.
 </p>
 
 <div class="panel qris">
 
-<h3>Dukung Muda Bergerak</h3>
+<h3>
+Dukung Muda Bergerak
+</h3>
 
 <p>
-Dukungan Anda membantu pengembangan program dan kegiatan
-Muda Bergerak Sulawesi Selatan.
+Dukungan Anda membantu pengembangan program dan kegiatan Muda Bergerak Sulawesi Selatan.
 </p>
 
 <img
@@ -1051,7 +1399,9 @@ id="qrisImage"
 alt="QRIS Muda Bergerak"
 src="">
 
-<p id="qrisStatus" style="margin-top:10px;color:#777;font-size:12px;">
+<p
+id="qrisStatus"
+style="margin-top:10px;color:#777;font-size:12px;">
 Memuat QRIS...
 </p>
 
@@ -1060,20 +1410,29 @@ Memuat QRIS...
 </div>
 
 <footer>
+
 <div class="footer-inner">
 
 <div class="footer-logo">
-<img src="1000583091-removebg-preview.png">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+alt="Logo">
+
 <div class="footer-title">
 MUDA BERGERAK SULAWESI SELATAN
 </div>
+
 </div>
 
 <div class="footer-content">
 
 <div>
 <h4>Alamat Sekretariat</h4>
-<p>Jl. Ance Dg. Ngoyo No. 8D, Panakkukang - Kota Makassar</p>
+<p>
+Jl. Ance Dg. Ngoyo No. 8D,
+Panakkukang - Kota Makassar
+</p>
 </div>
 
 <div>
@@ -1096,6 +1455,7 @@ MUDA BERGERAK SULAWESI SELATAN
 </div>
 
 </div>
+
 </footer>
 
 </section>
@@ -1104,34 +1464,78 @@ MUDA BERGERAK SULAWESI SELATAN
 <!-- =====================================================
  JOIN WITH US
 ===================================================== -->
+
 <section class="page" id="join">
 
 <header>
+
 <div class="header-inner">
-<img src="1000583091-removebg-preview.png" class="logo">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+class="logo"
+alt="Logo Muda Bergerak">
+
 <div class="header-title">
-<h1>MUDA BERGERAK SULAWESI SELATAN</h1>
+
+<h1>
+MUDA BERGERAK SULAWESI SELATAN
+</h1>
+
 <h2>COMMAND CENTER</h2>
-<p>Pusat Informasi dan Koordinasi Organisasi</p>
+
+<p>
+Pusat Informasi dan Koordinasi Organisasi
+</p>
+
 </div>
+
 </div>
+
 </header>
 
 <nav>
+
 <div class="nav-inner">
-<button onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-<button onclick="showPage('monitoring',this)">📊 Monitoring</button>
-<button onclick="showPage('pemberitahuan',this)">🔔 Pemberitahuan</button>
-<button onclick="showPage('laporan',this)">📑 Laporan</button>
-<button onclick="showPage('agenda',this)">📅 Agenda</button>
-<button onclick="showPage('support',this)">🤝 Support Us</button>
-<button class="active" onclick="showPage('join',this)">🚀 Join With Us</button>
+
+<button onclick="showPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button onclick="showPage('monitoring',this)">
+📊 Monitoring
+</button>
+
+<button onclick="showPage('pemberitahuan',this)">
+🔔 Pemberitahuan
+</button>
+
+<button onclick="showPage('laporan',this)">
+📑 Laporan
+</button>
+
+<button onclick="showPage('agenda',this)">
+📅 Agenda
+</button>
+
+<button onclick="showPage('support',this)">
+🤝 Support Us
+</button>
+
+<button class="active"
+onclick="showPage('join',this)">
+🚀 Join With Us
+</button>
+
 </div>
+
 </nav>
 
 <div class="container">
 
-<h2 class="section-title">Join With Us</h2>
+<h2 class="section-title">
+Join With Us
+</h2>
 
 <p class="section-subtitle">
 Mari menjadi bagian dari gerakan anak muda Sulawesi Selatan.
@@ -1140,23 +1544,46 @@ Mari menjadi bagian dari gerakan anak muda Sulawesi Selatan.
 <div class="panel join-form">
 
 <div class="form-group">
-<label>Nama</label>
-<input id="joinNama" type="text" placeholder="Nama lengkap">
+
+<label>
+Nama
+</label>
+
+<input
+id="joinNama"
+type="text"
+placeholder="Nama lengkap">
+
 </div>
 
 <div class="form-group">
-<label>Domisili</label>
-<input id="joinDomisili" type="text" placeholder="Kabupaten / Kota">
+
+<label>
+Domisili
+</label>
+
+<input
+id="joinDomisili"
+type="text"
+placeholder="Kabupaten / Kota">
+
 </div>
 
 <div class="form-group">
-<label>Alasan Ingin Bergabung</label>
+
+<label>
+Alasan Ingin Bergabung
+</label>
+
 <textarea
 id="joinAlasan"
-placeholder="Tuliskan alasan Anda ingin bergabung..."></textarea>
+placeholder="Tuliskan alasan Anda ingin bergabung...">
+</textarea>
+
 </div>
 
-<button class="btn" onclick="joinUs()">
+<button class="btn"
+onclick="joinUs()">
 Hubungi Kami
 </button>
 
@@ -1165,20 +1592,29 @@ Hubungi Kami
 </div>
 
 <footer>
+
 <div class="footer-inner">
 
 <div class="footer-logo">
-<img src="1000583091-removebg-preview.png">
+
+<img
+src="https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png"
+alt="Logo">
+
 <div class="footer-title">
 MUDA BERGERAK SULAWESI SELATAN
 </div>
+
 </div>
 
 <div class="footer-content">
 
 <div>
 <h4>Alamat Sekretariat</h4>
-<p>Jl. Ance Dg. Ngoyo No. 8D, Panakkukang - Kota Makassar</p>
+<p>
+Jl. Ance Dg. Ngoyo No. 8D,
+Panakkukang - Kota Makassar
+</p>
 </div>
 
 <div>
@@ -1201,6 +1637,7 @@ MUDA BERGERAK SULAWESI SELATAN
 </div>
 
 </div>
+
 </footer>
 
 </section>
@@ -1225,6 +1662,14 @@ window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
+
+
+/* =====================================================
+ LOGO
+===================================================== */
+
+const LOGO_URL =
+"https://rgffzcpsofmjnqdfyolg.supabase.co/storage/v1/object/public/QRIS/1000583091-removebg-preview.png";
 
 
 /* =====================================================
@@ -1386,8 +1831,6 @@ function calculateDPD(dpd){
 
   let total = 0;
 
-  /* 4 KOMPONEN UTAMA */
-
   if(String(dpd.ketua || "").trim())
     total += 1;
 
@@ -1400,15 +1843,14 @@ function calculateDPD(dpd){
   if(String(dpd.sekretariat || "").trim())
     total += 1;
 
-
-  /* 6 BIDANG */
-
   BIDANG_LIST.forEach(nama => {
 
     const bidang =
       data.find(
         b =>
-        String(b.bidang || "").trim().toLowerCase()
+        String(b.bidang || "")
+        .trim()
+        .toLowerCase()
         ===
         nama.trim().toLowerCase()
       );
@@ -1430,12 +1872,10 @@ function calculateDPD(dpd){
 
   });
 
-
   const progress =
     Math.round(
       (total / 10) * 100
     );
-
 
   let status =
     "BELUM TERBENTUK";
@@ -1451,7 +1891,6 @@ function calculateDPD(dpd){
       "DALAM PROSES";
 
   }
-
 
   return {
     progress,
@@ -1572,8 +2011,7 @@ function renderMonitoring(){
               .trim()
               .toLowerCase()
               ===
-              nama.trim()
-              .toLowerCase()
+              nama.trim().toLowerCase()
             );
 
           return b || {};
@@ -1758,6 +2196,7 @@ async function loadDatabase(){
 
 
     renderMonitoring();
+
     updateSummary();
 
 
@@ -1767,7 +2206,7 @@ async function loadDatabase(){
     );
 
     console.log(
-      "BIDANG:",
+      "BIDANG_DPD:",
       bidangs
     );
 
@@ -1786,7 +2225,9 @@ async function loadDatabase(){
 
       <div class="panel">
 
-        <h3>Data belum dapat dimuat</h3>
+        <h3>
+          Data belum dapat dimuat
+        </h3>
 
         <p style="color:#777;margin-top:8px;">
           Pastikan koneksi Supabase,
@@ -1813,7 +2254,9 @@ function updateSummary(){
     dpds.length;
 
   let process = 0;
+
   let done = 0;
+
   let empty = 0;
 
 
@@ -1823,14 +2266,19 @@ function updateSummary(){
       calculateDPD(dpd);
 
 
-    if(result.status === "SUDAH TERBENTUK")
+    if(result.status === "SUDAH TERBENTUK"){
+
       done++;
 
-    else if(result.status === "DALAM PROSES")
+    }else if(result.status === "DALAM PROSES"){
+
       process++;
 
-    else
+    }else{
+
       empty++;
+
+    }
 
   });
 
@@ -1986,7 +2434,7 @@ function showPage(pageId,button){
 
 
 /* =====================================================
- SEARCH & FILTER
+ SEARCH
 ===================================================== */
 
 document
@@ -1996,6 +2444,10 @@ document
   renderMonitoring
 );
 
+
+/* =====================================================
+ FILTER
+===================================================== */
 
 document
 .getElementById("filterStatus")
@@ -2023,7 +2475,10 @@ async function loadQRIS(){
       );
 
 
-    if(data && data.publicUrl){
+    if(
+      data &&
+      data.publicUrl
+    ){
 
       document
       .getElementById("qrisImage")
@@ -2082,9 +2537,11 @@ function joinUs(){
     .trim();
 
 
-  if(!nama ||
-     !domisili ||
-     !alasan){
+  if(
+    !nama ||
+    !domisili ||
+    !alasan
+  ){
 
     alert(
       "Mohon lengkapi semua data."
