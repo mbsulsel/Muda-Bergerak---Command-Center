@@ -1,760 +1,941 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MUDA BERGERAK PROV. SULAWESI SELATAN — COMMAND CENTER</title><link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-  <title>MUDA BERGERAK PROV. SULAWESI SELATAN - COMMAND CENTER</title>
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f5f5;
+    color:#222;
+}
 
-  <!-- LEAFLET MAP -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#ff6a00,#ff8c00);
+    color:white;
+    padding:22px 18px;
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
 
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-  </script>
+.header h1{
+    font-size:22px;
+    font-weight:800;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+.header p{
+    margin-top:6px;
+    font-size:14px;
+    opacity:.95;
+}
+
+/* CONTAINER */
+.container{
+    width:94%;
+    max-width:1200px;
+    margin:20px auto;
+}
+
+/* STATISTICS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:20px;
+}
+
+.stat{
+    background:white;
+    border-radius:14px;
+    padding:18px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+    border-left:5px solid #ff7200;
+}
+
+.stat h3{
+    font-size:13px;
+    color:#777;
+    margin-bottom:8px;
+}
+
+.stat strong{
+    font-size:28px;
+    color:#ff7200;
+}
+
+/* MENU */
+.menu{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    margin-bottom:20px;
+}
+
+.menu button{
+    border:0;
+    background:white;
+    padding:12px 18px;
+    border-radius:10px;
+    white-space:nowrap;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.menu button.active,
+.menu button:hover{
+    background:#ff7200;
+    color:white;
+}
+
+/* SECTION */
+.section{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.section-title h2{
+    font-size:20px;
+}
+
+/* MAP */
+#map{
+    height:480px;
+    width:100%;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+/* SEARCH */
+.search-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.search-box input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:9px;
+    font-size:15px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#ff7200;
+}
+
+/* FILTER */
+.filters{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:15px;
+}
+
+.filters button{
+    border:1px solid #ddd;
+    background:white;
+    padding:9px 13px;
+    border-radius:20px;
+    white-space:nowrap;
+    cursor:pointer;
+}
+
+.filters button.active{
+    background:#ff7200;
+    color:white;
+    border-color:#ff7200;
+}
+
+/* DPD GRID */
+.dpd-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.dpd-card{
+    border:1px solid #eee;
+    border-radius:12px;
+    padding:16px;
+    background:#fff;
+    transition:.2s;
+}
+
+.dpd-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.dpd-card h3{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.status{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.belum{
+    background:#eee;
+    color:#555;
+}
+
+.proses{
+    background:#fff0d9;
+    color:#b75b00;
+}
+
+.selesai{
+    background:#e5f7e9;
+    color:#16803a;
+}
+
+.siap{
+    background:#e5f0ff;
+    color:#1764b0;
+}
+
+.lantik{
+    background:#dff7ec;
+    color:#087443;
+}
+
+.progress{
+    height:8px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:8px;
+}
+
+.progress-bar{
+    height:100%;
+    background:#ff7200;
+    border-radius:20px;
+}
+
+.detail{
+    margin-top:12px;
+    font-size:13px;
+    line-height:1.7;
+    color:#666;
+}
+
+/* POPUP */
+.popup{
+    min-width:220px;
+}
+
+.popup h3{
+    color:#ff7200;
+    margin-bottom:8px;
+}
+
+.popup p{
+    margin:4px 0;
+    font-size:13px;
+}
+
+/* EMPTY */
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#888;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:25px;
+    color:#777;
+    font-size:12px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    body {
-      background: #f5f5f5;
-      color: #171717;
+    .dpd-grid{
+        grid-template-columns:1fr;
     }
 
-    /* HEADER */
-
-    header {
-      background: linear-gradient(135deg, #ff6b00, #ff9800);
-      color: white;
-      padding: 24px 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.15);
+    .header h1{
+        font-size:18px;
     }
 
-    header h1 {
-      font-size: 22px;
-      font-weight: 800;
+    #map{
+        height:400px;
+    }
+}
+
+@media(max-width:450px){
+
+    .container{
+        width:95%;
     }
 
-    header p {
-      margin-top: 7px;
-      font-size: 13px;
-      letter-spacing: 2px;
-      font-weight: bold;
+    .stat strong{
+        font-size:24px;
     }
 
-    /* CONTAINER */
-
-    .container {
-      max-width: 1250px;
-      margin: auto;
-      padding: 20px;
+    .section{
+        padding:15px;
     }
 
-    .welcome {
-      margin-bottom: 20px;
+    #map{
+        height:350px;
     }
+}
+</style></head><body><header class="header">
+    <h1>MUDA BERGERAK PROV. SULAWESI SELATAN</h1>
+    <p>COMMAND CENTER — Monitoring 24 DPD Kabupaten/Kota</p>
+</header><main class="container"><!-- STATISTICS --><section class="stats"><div class="stat">
+    <h3>Total DPD</h3>
+    <strong id="totalDPD">24</strong>
+</div>
 
-    .welcome h2 {
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
+<div class="stat">
+    <h3>Sudah Terbentuk</h3>
+    <strong id="formedDPD">0</strong>
+</div>
 
-    .welcome p {
-      color: #666;
-      font-size: 14px;
-    }
+<div class="stat">
+    <h3>Siap Dilantik</h3>
+    <strong id="readyDPD">0</strong>
+</div>
 
-    /* STAT */
+<div class="stat">
+    <h3>Dalam Proses</h3>
+    <strong id="processDPD">0</strong>
+</div>
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      margin-bottom: 20px;
-    }
+</section><!-- MENU --><nav class="menu"><button class="active" onclick="showSection('dashboard',this)">
+    🏠 Dashboard
+</button>
 
-    .stat {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      border-top: 5px solid #ff6b00;
-      box-shadow: 0 4px 15px rgba(0,0,0,.07);
-    }
+<button onclick="showSection('mapSection',this)">
+    🗺️ Peta DPD
+</button>
 
-    .stat-title {
-      color: #666;
-      font-size: 12px;
-      font-weight: bold;
-    }
+<button onclick="showSection('monitoring',this)">
+    📊 Monitoring
+</button>
 
-    .stat-number {
-      font-size: 32px;
-      font-weight: 800;
-      margin-top: 8px;
-    }
+<button onclick="showSection('communication',this)">
+    💬 Komunikasi
+</button>
 
-    /* SECTION */
+<button onclick="showSection('reports',this)">
+    📋 Laporan
+</button>
 
-    .section {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.07);
-    }
+<button onclick="showSection('agenda',this)">
+    📅 Agenda
+</button>
 
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .section-header h3 {
-      font-size: 18px;
-    }
-
-    .badge {
-      background: #fff0e5;
-      color: #ff6b00;
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: bold;
-    }
-
-    /* MAP */
-
-    #map {
-      width: 100%;
-      height: 430px;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    /* MENU */
-
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .menu-item {
-      background: #171717;
-      color: white;
-      padding: 18px 10px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: bold;
-      transition: .2s;
-    }
-
-    .menu-item:hover {
-      background: #ff6b00;
-      transform: translateY(-2px);
-    }
-
-    .menu-icon {
-      font-size: 28px;
-      display: block;
-      margin-bottom: 7px;
-    }
-
-    /* DPD */
-
-    .dpd-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .dpd {
-      background: #fafafa;
-      border: 1px solid #eee;
-      border-left: 5px solid #ff6b00;
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    .dpd-name {
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .status {
-      display: inline-block;
-      background: #eeeeee;
-      color: #666;
-      padding: 5px 9px;
-      border-radius: 20px;
-      font-size: 10px;
-      font-weight: bold;
-    }
-
-    /* FOOTER */
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #888;
-      font-size: 12px;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 800px) {
-
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .menu {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .dpd-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-    }
-
-    @media (max-width: 500px) {
-
-      header h1 {
-        font-size: 18px;
-      }
-
-      .container {
-        padding: 15px;
-      }
-
-      .welcome h2 {
-        font-size: 22px;
-      }
-
-      .dpd-list {
-        grid-template-columns: 1fr;
-      }
-
-      #map {
-        height: 350px;
-      }
-
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-
-  <h1>MUDA BERGERAK PROV. SULAWESI SELATAN</h1>
-
-  <p>COMMAND CENTER</p>
-
-</header>
-
-
-<div class="container">
-
-  <div class="welcome">
-
+</nav><!-- DASHBOARD --><section id="dashboard" class="section"><div class="section-title">
     <h2>Command Center</h2>
-
-    <p>
-      Pusat monitoring, koordinasi dan informasi
-      Muda Bergerak Provinsi Sulawesi Selatan.
-    </p>
-
-  </div>
-
-
-  <!-- STATISTIK -->
-
-  <div class="stats">
-
-    <div class="stat">
-
-      <div class="stat-title">
-        TOTAL DPD
-      </div>
-
-      <div class="stat-number">
-        24
-      </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-title">
-        SUDAH TERBENTUK
-      </div>
-
-      <div class="stat-number">
-        0
-      </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-title">
-        SIAP DILANTIK
-      </div>
-
-      <div class="stat-number">
-        0
-      </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-title">
-        DALAM PROSES
-      </div>
-
-      <div class="stat-number">
-        0
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- MENU -->
-
-  <div class="section">
-
-    <div class="section-header">
-
-      <h3>⚡ Command Menu</h3>
-
-      <span class="badge">
-        DPW
-      </span>
-
-    </div>
-
-
-    <div class="menu">
-
-      <div class="menu-item">
-        <span class="menu-icon">🗺️</span>
-        Peta DPD
-      </div>
-
-      <div class="menu-item">
-        <span class="menu-icon">📊</span>
-        Monitoring
-      </div>
-
-      <div class="menu-item">
-        <span class="menu-icon">📩</span>
-        Komunikasi
-      </div>
-
-      <div class="menu-item">
-        <span class="menu-icon">📄</span>
-        Laporan
-      </div>
-
-      <div class="menu-item">
-        <span class="menu-icon">📅</span>
-        Agenda
-      </div>
-
-      <div class="menu-item">
-        <span class="menu-icon">🔔</span>
-        Notifikasi
-      </div>
-
-      <div class="menu-item">
-        <span class="menu-icon">👥</span>
-        Anggota
-      </div>
-
-      <div class="menu-item">
-        <span class="menu-icon">⚙️</span>
-        Pengaturan
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- PETA -->
-
-  <div class="section">
-
-    <div class="section-header">
-
-      <h3>🗺️ Peta Monitoring Sulawesi Selatan</h3>
-
-      <span class="badge">
-        24 DPD
-      </span>
-
-    </div>
-
-
-    <div id="map"></div>
-
-  </div>
-
-
-  <!-- DPD -->
-
-  <div class="section">
-
-    <div class="section-header">
-
-      <h3>📍 24 DPD Kabupaten/Kota</h3>
-
-      <span class="badge">
-        MONITORING
-      </span>
-
-    </div>
-
-
-    <div class="dpd-list">
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Kota Makassar</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Kota Parepare</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Kota Palopo</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Bantaeng</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Barru</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Bone</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Bulukumba</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Enrekang</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Gowa</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Jeneponto</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Kepulauan Selayar</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Luwu</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Luwu Timur</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Luwu Utara</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Maros</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Pangkajene dan Kepulauan</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Pinrang</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Sidenreng Rappang</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Sinjai</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Soppeng</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Takalar</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Tana Toraja</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Toraja Utara</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-      <div class="dpd">
-        <div class="dpd-name">DPD Wajo</div>
-        <span class="status">BELUM DIPERBARUI</span>
-      </div>
-
-    </div>
-
-  </div>
+</div>
+
+<p style="line-height:1.7;color:#666;">
+    Selamat datang di pusat monitoring
+    <b>Muda Bergerak Provinsi Sulawesi Selatan.</b>
+    Gunakan Command Center untuk memantau perkembangan
+    pembentukan dan aktivitas 24 DPD Kabupaten/Kota.
+</p>
+
+</section><!-- MAP --><section id="mapSection" class="section"><div class="section-title">
+    <h2>🗺️ Peta 24 DPD Sulawesi Selatan</h2>
+</div>
+
+<div id="map"></div>
+
+</section><!-- MONITORING --><section id="monitoring" class="section"><div class="section-title">
+    <h2>📊 Monitoring DPD</h2>
+</div>
+
+<div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Cari Kabupaten/Kota..."
+        onkeyup="renderDPD()"
+    >
+</div>
+
+<div class="filters">
+
+    <button class="active"
+        onclick="setFilter('SEMUA',this)">
+        Semua
+    </button>
+
+    <button
+        onclick="setFilter('BELUM TERBENTUK',this)">
+        Belum Terbentuk
+    </button>
+
+    <button
+        onclick="setFilter('DALAM PROSES',this)">
+        Dalam Proses
+    </button>
+
+    <button
+        onclick="setFilter('PEMBENTUKAN SELESAI',this)">
+        Terbentuk
+    </button>
+
+    <button
+        onclick="setFilter('SIAP DILANTIK',this)">
+        Siap Dilantik
+    </button>
+
+    <button
+        onclick="setFilter('SUDAH DILANTIK',this)">
+        Sudah Dilantik
+    </button>
 
 </div>
 
+<div id="dpdGrid" class="dpd-grid"></div>
 
-<footer>
+</section><!-- COMMUNICATION --><section id="communication" class="section"><div class="section-title">
+    <h2>💬 Komunikasi DPW ↔ DPD</h2>
+</div>
 
-  © 2026 MUDA BERGERAK PROV. SULAWESI SELATAN
-  <br>
-  COMMAND CENTER
+<div class="empty">
+    Fitur komunikasi akan digunakan untuk
+    surat, arahan, undangan, dan informasi
+    antara DPW dan DPD.
+</div>
 
-</footer>
+</section><!-- REPORT --><section id="reports" class="section"><div class="section-title">
+    <h2>📋 Laporan DPD</h2>
+</div>
+
+<div class="empty">
+    Belum ada laporan masuk.
+</div>
+
+</section><!-- AGENDA --><section id="agenda" class="section"><div class="section-title">
+    <h2>📅 Agenda Organisasi</h2>
+</div>
+
+<div class="empty">
+    Belum ada agenda.
+</div>
+
+</section><footer class="footer">
+    © 2026 MUDA BERGERAK PROV. SULAWESI SELATAN
+    <br>
+    COMMAND CENTER
+</footer></main><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script>
+
+/* =========================
+   DATA 24 DPD
+========================= */
+
+const dpdData = [
+
+{
+nama:"Kota Makassar",
+lat:-5.1477,
+lng:119.4327,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Kota Parepare",
+lat:-4.0135,
+lng:119.6255,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Kota Palopo",
+lat:-2.9925,
+lng:120.1969,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Bantaeng",
+lat:-5.5167,
+lng:120.0167,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Barru",
+lat:-4.4333,
+lng:119.6167,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Bone",
+lat:-4.5383,
+lng:120.3279,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Bulukumba",
+lat:-5.5500,
+lng:120.2000,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Enrekang",
+lat:-3.5631,
+lng:119.7738,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Gowa",
+lat:-5.3167,
+lng:119.7500,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Jeneponto",
+lat:-5.6772,
+lng:119.7310,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Kepulauan Selayar",
+lat:-6.1333,
+lng:120.4667,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Luwu",
+lat:-2.7333,
+lng:120.3333,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Luwu Timur",
+lat:-2.5833,
+lng:121.1667,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Luwu Utara",
+lat:-2.6000,
+lng:120.2500,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Maros",
+lat:-5.0000,
+lng:119.5833,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Pangkajene dan Kepulauan",
+lat:-4.8372,
+lng:119.5483,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Pinrang",
+lat:-3.7861,
+lng:119.6522,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Sidenreng Rappang",
+lat:-3.7667,
+lng:119.9167,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Sinjai",
+lat:-5.1200,
+lng:120.2530,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Soppeng",
+lat:-4.3500,
+lng:119.8833,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Takalar",
+lat:-5.4167,
+lng:119.4500,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Tana Toraja",
+lat:-3.1000,
+lng:119.8000,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Toraja Utara",
+lat:-2.9667,
+lng:119.9000,
+status:"BELUM TERBENTUK",
+progress:0
+},
+
+{
+nama:"Wajo",
+lat:-4.0000,
+lng:120.1500,
+status:"BELUM TERBENTUK",
+progress:0
+}
+
+];
 
 
-<!-- MAP SCRIPT -->
+/* =========================
+   MAP
+========================= */
 
-<script>
-
-  const map = L.map('map').setView(
-    [-3.7, 120.0],
+const map = L.map('map').setView(
+    [-4.5,120.0],
     7
-  );
+);
 
-
-  L.tileLayer(
+L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     {
-      attribution:
-        '&copy; OpenStreetMap contributors'
+        attribution:'© OpenStreetMap contributors'
     }
-  ).addTo(map);
+).addTo(map);
 
 
-  const dpdLocations = [
+/* MARKERS */
 
-    {
-      nama: 'DPD Kota Makassar',
-      lat: -5.1477,
-      lng: 119.4327
-    },
-
-    {
-      nama: 'DPD Kota Parepare',
-      lat: -4.0135,
-      lng: 119.6255
-    },
-
-    {
-      nama: 'DPD Kota Palopo',
-      lat: -2.9981,
-      lng: 120.1968
-    },
-
-    {
-      nama: 'DPD Bantaeng',
-      lat: -5.5483,
-      lng: 120.0306
-    },
-
-    {
-      nama: 'DPD Barru',
-      lat: -4.4173,
-      lng: 119.6294
-    },
-
-    {
-      nama: 'DPD Bone',
-      lat: -4.5383,
-      lng: 120.3208
-    },
-
-    {
-      nama: 'DPD Bulukumba',
-      lat: -5.4310,
-      lng: 120.2050
-    },
-
-    {
-      nama: 'DPD Enrekang',
-      lat: -3.5630,
-      lng: 119.7730
-    },
-
-    {
-      nama: 'DPD Gowa',
-      lat: -5.3103,
-      lng: 119.7420
-    },
-
-    {
-      nama: 'DPD Jeneponto',
-      lat: -5.6770,
-      lng: 119.7380
-    },
-
-    {
-      nama: 'DPD Kepulauan Selayar',
-      lat: -6.1300,
-      lng: 120.4600
-    },
-
-    {
-      nama: 'DPD Luwu',
-      lat: -3.3860,
-      lng: 120.3770
-    },
-
-    {
-      nama: 'DPD Luwu Timur',
-      lat: -2.5800,
-      lng: 121.1700
-    },
-
-    {
-      nama: 'DPD Luwu Utara',
-      lat: -2.5500,
-      lng: 119.9700
-    },
-
-    {
-      nama: 'DPD Maros',
-      lat: -5.0060,
-      lng: 119.5720
-    },
-
-    {
-      nama: 'DPD Pangkajene dan Kepulauan',
-      lat: -4.8370,
-      lng: 119.5500
-    },
-
-    {
-      nama: 'DPD Pinrang',
-      lat: -3.7860,
-      lng: 119.6520
-    },
-
-    {
-      nama: 'DPD Sidenreng Rappang',
-      lat: -3.7730,
-      lng: 119.9770
-    },
-
-    {
-      nama: 'DPD Sinjai',
-      lat: -5.1200,
-      lng: 120.2530
-    },
-
-    {
-      nama: 'DPD Soppeng',
-      lat: -4.3500,
-      lng: 119.8900
-    },
-
-    {
-      nama: 'DPD Takalar',
-      lat: -5.4200,
-      lng: 119.4500
-    },
-
-    {
-      nama: 'DPD Tana Toraja',
-      lat: -3.1000,
-      lng: 119.8500
-    },
-
-    {
-      nama: 'DPD Toraja Utara',
-      lat: -2.9700,
-      lng: 119.9000
-    },
-
-    {
-      nama: 'DPD Wajo',
-      lat: -4.0000,
-      lng: 120.1300
-    }
-
-  ];
-
-
-  dpdLocations.forEach(function(dpd) {
+dpdData.forEach(dpd => {
 
     const marker = L.marker([
-      dpd.lat,
-      dpd.lng
+        dpd.lat,
+        dpd.lng
     ]).addTo(map);
 
+    marker.bindPopup(`
+        <div class="popup">
+            <h3>MUDA BERGERAK</h3>
 
-    marker.bindPopup(
-      '<b>MUDA BERGERAK</b><br>' +
-      '<strong>' + dpd.nama + '</strong><br>' +
-      '<br>Status: Belum Diperbarui'
+            <p>
+                <b>DPD ${dpd.nama}</b>
+            </p>
+
+            <p>
+                Status:
+                <b>${dpd.status}</b>
+            </p>
+
+            <p>
+                Progress:
+                <b>${dpd.progress}%</b>
+            </p>
+        </div>
+    `);
+
+});
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+function updateStats(){
+
+    const total = dpdData.length;
+
+    const formed =
+        dpdData.filter(
+            x =>
+            x.status === "PEMBENTUKAN SELESAI" ||
+            x.status === "SIAP DILANTIK" ||
+            x.status === "SUDAH DILANTIK"
+        ).length;
+
+    const ready =
+        dpdData.filter(
+            x => x.status === "SIAP DILANTIK"
+        ).length;
+
+    const process =
+        dpdData.filter(
+            x =>
+            x.status === "DALAM PROSES"
+        ).length;
+
+    document.getElementById(
+        "totalDPD"
+    ).textContent = total;
+
+    document.getElementById(
+        "formedDPD"
+    ).textContent = formed;
+
+    document.getElementById(
+        "readyDPD"
+    ).textContent = ready;
+
+    document.getElementById(
+        "processDPD"
+    ).textContent = process;
+}
+
+
+/* =========================
+   DPD CARDS
+========================= */
+
+let currentFilter = "SEMUA";
+
+function setFilter(status,button){
+
+    currentFilter = status;
+
+    document.querySelectorAll(
+        ".filters button"
+    ).forEach(
+        b => b.classList.remove("active")
     );
 
-  });
+    button.classList.add("active");
+
+    renderDPD();
+}
+
+
+function getStatusClass(status){
+
+    if(status === "DALAM PROSES")
+        return "proses";
+
+    if(status === "PEMBENTUKAN SELESAI")
+        return "selesai";
+
+    if(status === "SIAP DILANTIK")
+        return "siap";
+
+    if(status === "SUDAH DILANTIK")
+        return "lantik";
+
+    return "belum";
+}
+
+
+function renderDPD(){
+
+    const grid =
+        document.getElementById(
+            "dpdGrid"
+        );
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value.toLowerCase();
+
+    let data =
+        dpdData.filter(dpd => {
+
+            const matchSearch =
+                dpd.nama
+                .toLowerCase()
+                .includes(search);
+
+            const matchFilter =
+                currentFilter === "SEMUA" ||
+                dpd.status === currentFilter;
+
+            return matchSearch &&
+                   matchFilter;
+        });
+
+
+    if(data.length === 0){
+
+        grid.innerHTML =
+        `<div class="empty">
+            Data DPD tidak ditemukan.
+        </div>`;
+
+        return;
+    }
+
+
+    grid.innerHTML =
+    data.map((dpd,index) => `
+
+        <div class="dpd-card">
+
+            <h3>
+                DPD ${dpd.nama}
+            </h3>
+
+            <span class="status
+                ${getStatusClass(dpd.status)}">
+
+                ${dpd.status}
+
+            </span>
+
+            <div class="detail">
+
+                <b>Progress Pembentukan</b>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        style="width:${dpd.progress}%">
+                    </div>
+
+                </div>
+
+                <p>
+                    ${dpd.progress}% selesai
+                </p>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showSection(
+    sectionId,
+    button
+){
+
+    document.querySelectorAll(
+        ".section"
+    ).forEach(
+        section =>
+        section.style.display = "none"
+    );
+
+    document.getElementById(
+        sectionId
+    ).style.display = "block";
+
+
+    document.querySelectorAll(
+        ".menu button"
+    ).forEach(
+        b => b.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+
+    if(sectionId === "mapSection"){
+
+        setTimeout(
+            () => map.invalidateSize(),
+            200
+        );
+
+    }
+
+}
+
+
+/* =========================
+   INITIAL
+========================= */
+
+updateStats();
+renderDPD();
+
+
+/* DEFAULT SECTION */
+
+document.querySelectorAll(
+    ".section"
+).forEach(
+    section => section.style.display = "none"
+);
+
+document.getElementById(
+    "dashboard"
+).style.display = "block";
 
 </script>
 
