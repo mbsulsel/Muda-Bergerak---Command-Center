@@ -6,20 +6,14 @@
 
 <title>MUDA BERGERAK SULSEL — COMMAND CENTER</title>
 
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- LEAFLET -->
 <link rel="stylesheet"
 href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 *{
   box-sizing:border-box;
@@ -28,18 +22,15 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 }
 
 body{
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
   background:#f5f5f5;
   color:#222;
 }
 
-
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
-  background:linear-gradient(135deg,#ff6a00,#ff8c00);
+  background:linear-gradient(135deg,#ff6500,#ff9500);
   color:white;
   padding:22px 18px;
   box-shadow:0 3px 10px rgba(0,0,0,.15);
@@ -53,13 +44,9 @@ header{
 .header-subtitle{
   margin-top:5px;
   font-size:13px;
-  opacity:.95;
 }
 
-
-/* =========================
-   CONTAINER
-========================= */
+/* CONTAINER */
 
 .container{
   max-width:1200px;
@@ -67,10 +54,7 @@ header{
   padding:18px;
 }
 
-
-/* =========================
-   NAVIGATION
-========================= */
+/* NAV */
 
 nav{
   display:flex;
@@ -98,10 +82,7 @@ nav button.active{
   color:white;
 }
 
-
-/* =========================
-   SECTION
-========================= */
+/* SECTION */
 
 .section{
   display:none;
@@ -117,23 +98,22 @@ nav button.active{
   margin-bottom:15px;
 }
 
-
-/* =========================
-   STATISTICS
-========================= */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:18px;
-}
+/* CARD */
 
 .card{
   background:white;
   border-radius:14px;
   padding:18px;
   box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+/* STAT */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:18px;
 }
 
 .stat-title{
@@ -148,10 +128,15 @@ nav button.active{
   color:#ff6a00;
 }
 
+/* INFO */
 
-/* =========================
-   MAP
-========================= */
+.info{
+  font-size:13px;
+  color:#666;
+  line-height:1.7;
+}
+
+/* MAP */
 
 .map-card{
   margin-top:18px;
@@ -160,7 +145,7 @@ nav button.active{
 }
 
 .map-header{
-  padding:18px 18px 12px 18px;
+  padding:18px;
 }
 
 .map-title{
@@ -169,31 +154,17 @@ nav button.active{
 }
 
 .map-subtitle{
-  color:#777;
   font-size:12px;
+  color:#777;
   margin-top:4px;
 }
 
 #map{
-  height:430px;
   width:100%;
+  height:430px;
 }
 
-
-/* =========================
-   INFO
-========================= */
-
-.info{
-  font-size:13px;
-  color:#666;
-  line-height:1.7;
-}
-
-
-/* =========================
-   MONITORING
-========================= */
+/* MONITORING */
 
 .controls{
   display:flex;
@@ -264,10 +235,7 @@ input{
   color:#2165c7;
 }
 
-
-/* =========================
-   PROGRESS
-========================= */
+/* PROGRESS */
 
 .progress-box{
   margin-top:12px;
@@ -292,10 +260,7 @@ input{
   margin-top:5px;
 }
 
-
-/* =========================
-   STATUS
-========================= */
+/* STATUS */
 
 .loading{
   text-align:center;
@@ -317,10 +282,7 @@ input{
   color:#777;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 .dashboard-footer{
   margin-top:22px;
@@ -358,10 +320,7 @@ input{
   text-align:center;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:700px){
 
@@ -390,13 +349,7 @@ input{
 </style>
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header>
 
@@ -414,9 +367,7 @@ input{
 <div class="container">
 
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- NAVIGATION -->
 
 <nav>
 
@@ -449,15 +400,13 @@ input{
 </nav>
 
 
-
-<!-- ==================================================
+<!-- =========================
      DASHBOARD
-================================================== -->
+========================= -->
 
 <section
-  id="dashboard"
-  class="section active">
-
+id="dashboard"
+class="section active">
 
   <div class="section-title">
     Dashboard DPW
@@ -468,69 +417,58 @@ input{
 
   <div class="stats">
 
-
     <div class="card">
-
       <div class="stat-title">
         TOTAL DPD
       </div>
 
       <div
-        class="stat-number"
-        id="totalDPD">
-        0
+      class="stat-number"
+      id="totalDPD">
+      0
       </div>
-
     </div>
 
 
     <div class="card">
-
       <div class="stat-title">
         SUDAH TERBENTUK
       </div>
 
       <div
-        class="stat-number"
-        id="terbentuk">
-        0
+      class="stat-number"
+      id="terbentuk">
+      0
       </div>
-
     </div>
 
 
     <div class="card">
-
       <div class="stat-title">
         DALAM PROSES
       </div>
 
       <div
-        class="stat-number"
-        id="proses">
-        0
+      class="stat-number"
+      id="proses">
+      0
       </div>
-
     </div>
 
 
     <div class="card">
-
       <div class="stat-title">
         SUDAH DILANTIK
       </div>
 
       <div
-        class="stat-number"
-        id="dilantik">
-        0
+      class="stat-number"
+      id="dilantik">
+      0
       </div>
-
     </div>
 
-
   </div>
-
 
 
   <!-- RINGKASAN -->
@@ -544,14 +482,13 @@ input{
     <p class="info">
 
       Command Center DPW Muda Bergerak
-      Sulawesi Selatan digunakan sebagai pusat
-      monitoring perkembangan pembentukan
-      DPD Kabupaten/Kota se-Sulawesi Selatan.
+      Sulawesi Selatan merupakan pusat
+      monitoring pembentukan DPD
+      Kabupaten/Kota se-Sulawesi Selatan.
 
     </p>
 
   </div>
-
 
 
   <!-- PETA -->
@@ -575,11 +512,9 @@ input{
   </div>
 
 
-
   <!-- FOOTER -->
 
   <footer class="dashboard-footer">
-
 
     <div class="footer-title">
       MUDA BERGERAK SULAWESI SELATAN
@@ -643,28 +578,25 @@ input{
     <div class="footer-copy">
 
       © 2026 Muda Bergerak Sulawesi Selatan
+
       <br>
 
       COMMAND CENTER
 
     </div>
 
-
   </footer>
-
 
 </section>
 
 
-
-<!-- ==================================================
+<!-- =========================
      MONITORING
-================================================== -->
+========================= -->
 
 <section
-  id="monitoring"
-  class="section">
-
+id="monitoring"
+class="section">
 
   <div class="section-title">
     Monitoring 24 DPD
@@ -673,17 +605,16 @@ input{
 
   <div class="controls">
 
-
     <input
-      type="text"
-      id="search"
-      placeholder="🔎 Cari Kabupaten/Kota..."
-      oninput="renderDPD()">
+    type="text"
+    id="search"
+    placeholder="🔎 Cari Kabupaten/Kota..."
+    oninput="renderDPD()">
 
 
     <select
-      id="filterStatus"
-      onchange="renderDPD()">
+    id="filterStatus"
+    onchange="renderDPD()">
 
       <option value="">
         Semua Status
@@ -711,13 +642,12 @@ input{
 
     </select>
 
-
   </div>
 
 
   <div
-    id="dpdList"
-    class="dpd-grid">
+  id="dpdList"
+  class="dpd-grid">
 
     <div class="loading">
       Memuat data DPD...
@@ -725,32 +655,28 @@ input{
 
   </div>
 
-
 </section>
 
 
-
-<!-- ==================================================
+<!-- =========================
      KOMUNIKASI
-================================================== -->
+========================= -->
 
 <section
-  id="komunikasi"
-  class="section">
-
+id="komunikasi"
+class="section">
 
   <div class="section-title">
     Komunikasi DPW ↔ DPD
   </div>
 
-
   <div class="card">
 
     <p class="info">
 
-      Fitur komunikasi akan digunakan
-      untuk mengirim informasi, instruksi,
-      undangan, dan pemberitahuan dari
+      Fitur komunikasi digunakan untuk
+      menyampaikan informasi, instruksi,
+      undangan dan pemberitahuan dari
       DPW kepada DPD.
 
     </p>
@@ -763,55 +689,46 @@ input{
 
   </div>
 
-
 </section>
 
 
-
-<!-- ==================================================
+<!-- =========================
      LAPORAN
-================================================== -->
+========================= -->
 
 <section
-  id="laporan"
-  class="section">
-
+id="laporan"
+class="section">
 
   <div class="section-title">
     Laporan DPD
   </div>
-
 
   <div class="card">
 
     <p class="info">
 
       Modul laporan kegiatan DPD akan
-      terhubung dengan database pada
-      tahap berikutnya.
+      dikembangkan pada tahap berikutnya.
 
     </p>
 
   </div>
 
-
 </section>
 
 
-
-<!-- ==================================================
+<!-- =========================
      AGENDA
-================================================== -->
+========================= -->
 
 <section
-  id="agenda"
-  class="section">
-
+id="agenda"
+class="section">
 
   <div class="section-title">
     Agenda Organisasi
   </div>
-
 
   <div class="card">
 
@@ -824,19 +741,17 @@ input{
 
   </div>
 
-
 </section>
 
 
 </div>
 
 
-
 <script>
 
-/* =====================================================
+/* =========================================
    SUPABASE
-===================================================== */
+========================================= */
 
 const SUPABASE_URL =
 "https://rgffzcpsofmjnqdfyolg.supabase.co";
@@ -852,20 +767,18 @@ supabase.createClient(
 );
 
 
-
-/* =====================================================
-   VARIABLES
-===================================================== */
+/* =========================================
+   VARIABLE
+========================================= */
 
 let dpdData = [];
 
 let map;
 
 
-
-/* =====================================================
-   LOAD DATA SUPABASE
-===================================================== */
+/* =========================================
+   LOAD DPD
+========================================= */
 
 async function loadDPD(){
 
@@ -873,42 +786,54 @@ async function loadDPD(){
     document.getElementById("dpdList");
 
 
-  list.innerHTML =
-  `<div class="loading">
-    Memuat data dari Supabase...
-  </div>`;
+  list.innerHTML = `
+    <div class="loading">
+      Memuat data dari Supabase...
+    </div>
+  `;
 
+
+  /*
+     PENTING:
+     Nama tabel adalah DPD
+     dengan huruf kapital.
+  */
 
   const { data, error } =
     await supabaseClient
-      .from("dpd")
+      .from("DPD")
       .select("*")
       .order("id",{ascending:true});
 
 
   if(error){
 
-    console.error(error);
+    console.error("SUPABASE ERROR:",error);
 
 
-    list.innerHTML =
-    `<div class="error">
+    list.innerHTML = `
+      <div class="error">
 
-      Gagal mengambil data Supabase.
+        <b>Gagal membaca data DPD.</b>
 
-      <br><br>
+        <br><br>
 
-      ${error.message}
+        ${error.message}
 
-    </div>`;
+        <br><br>
+
+        Pastikan tabel DPD memiliki
+        policy SELECT untuk anon.
+
+      </div>
+    `;
 
     return;
 
   }
 
 
-  dpdData =
-    data || [];
+  dpdData = data || [];
 
 
   updateStats();
@@ -920,10 +845,9 @@ async function loadDPD(){
 }
 
 
-
-/* =====================================================
-   UPDATE STATISTICS
-===================================================== */
+/* =========================================
+   STATISTIK
+========================================= */
 
 function updateStats(){
 
@@ -932,26 +856,22 @@ function updateStats(){
 
 
   const terbentuk =
-    dpdData.filter(x =>
-
-      x.status === "PEMBENTUKAN SELESAI" ||
-
-      x.status === "SIAP DILANTIK" ||
-
-      x.status === "SUDAH DILANTIK"
-
+    dpdData.filter(d =>
+      d.status === "PEMBENTUKAN SELESAI" ||
+      d.status === "SIAP DILANTIK" ||
+      d.status === "SUDAH DILANTIK"
     ).length;
 
 
   const proses =
-    dpdData.filter(x =>
-      x.status === "DALAM PROSES"
+    dpdData.filter(d =>
+      d.status === "DALAM PROSES"
     ).length;
 
 
   const dilantik =
-    dpdData.filter(x =>
-      x.status === "SUDAH DILANTIK"
+    dpdData.filter(d =>
+      d.status === "SUDAH DILANTIK"
     ).length;
 
 
@@ -973,27 +893,30 @@ function updateStats(){
 }
 
 
-
-/* =====================================================
-   STATUS BADGE
-===================================================== */
+/* =========================================
+   BADGE
+========================================= */
 
 function statusClass(status){
 
-  if(status === "DALAM PROSES")
+  if(status === "DALAM PROSES"){
     return "badge badge-proses";
+  }
 
 
-  if(status === "PEMBENTUKAN SELESAI")
+  if(status === "PEMBENTUKAN SELESAI"){
     return "badge badge-selesai";
+  }
 
 
-  if(status === "SIAP DILANTIK")
+  if(status === "SIAP DILANTIK"){
     return "badge badge-lantik";
+  }
 
 
-  if(status === "SUDAH DILANTIK")
+  if(status === "SUDAH DILANTIK"){
     return "badge badge-selesai";
+  }
 
 
   return "badge badge-belum";
@@ -1001,10 +924,9 @@ function statusClass(status){
 }
 
 
-
-/* =====================================================
+/* =========================================
    RENDER DPD
-===================================================== */
+========================================= */
 
 function renderDPD(){
 
@@ -1026,11 +948,13 @@ function renderDPD(){
   const filtered =
     dpdData.filter(dpd => {
 
+      const name =
+        (dpd.nama || "")
+          .toLowerCase();
+
 
       const matchName =
-        (dpd.nama || "")
-          .toLowerCase()
-          .includes(search);
+        name.includes(search);
 
 
       const matchStatus =
@@ -1045,12 +969,11 @@ function renderDPD(){
 
   if(filtered.length === 0){
 
-    list.innerHTML =
-    `<div class="empty">
-
-      Data DPD tidak ditemukan.
-
-    </div>`;
+    list.innerHTML = `
+      <div class="empty">
+        Data DPD tidak ditemukan.
+      </div>
+    `;
 
     return;
 
@@ -1058,185 +981,150 @@ function renderDPD(){
 
 
   list.innerHTML =
-  filtered.map(dpd => {
+    filtered.map(dpd => {
+
+      const progress =
+        Number(dpd.progress || 0);
 
 
-    const progress =
-      Number(dpd.progress || 0);
+      return `
+
+        <div class="dpd-card">
+
+          <div class="dpd-name">
+            ${dpd.nama || "-"}
+          </div>
 
 
-    return `
-
-      <div class="dpd-card">
-
-
-        <div class="dpd-name">
-          ${dpd.nama || "-"}
-        </div>
+          <div class="${statusClass(dpd.status)}">
+            ${dpd.status || "BELUM TERBENTUK"}
+          </div>
 
 
-        <div class="${statusClass(dpd.status)}">
-          ${dpd.status || "BELUM TERBENTUK"}
-        </div>
+          <div class="info">
+
+            <b>Ketua:</b>
+            ${dpd.ketua || "Belum diisi"}
+
+            <br>
+
+            <b>Sekretaris:</b>
+            ${dpd.sekretaris || "Belum diisi"}
+
+            <br>
+
+            <b>Bendahara:</b>
+            ${dpd.bendahara || "Belum diisi"}
+
+            <br>
+
+            <b>Sekretariat:</b>
+            ${dpd.sekretariat || "Belum diisi"}
+
+          </div>
 
 
-        <div class="info">
+          <div class="progress-box">
 
+            <div class="progress-bar">
 
-          <b>Ketua:</b>
-          ${dpd.ketua || "Belum diisi"}
-
-          <br>
-
-
-          <b>Sekretaris:</b>
-          ${dpd.sekretaris || "Belum diisi"}
-
-          <br>
-
-
-          <b>Bendahara:</b>
-          ${dpd.bendahara || "Belum diisi"}
-
-          <br>
-
-
-          <b>Sekretariat:</b>
-          ${dpd.sekretariat || "Belum diisi"}
-
-
-        </div>
-
-
-        <div class="progress-box">
-
-
-          <div class="progress-bar">
-
-            <div
+              <div
               class="progress-fill"
               style="width:${progress}%">
+              </div>
+
+            </div>
+
+
+            <div class="progress-text">
+              Progress: ${progress}%
             </div>
 
           </div>
 
-
-          <div class="progress-text">
-            Progress: ${progress}%
-          </div>
-
-
         </div>
 
+      `;
 
-      </div>
-
-    `;
-
-  }).join("");
+    }).join("");
 
 }
 
 
-
-/* =====================================================
+/* =========================================
    KOORDINAT 24 DPD
-===================================================== */
+========================================= */
 
 const coordinates = {
-
 
   "Kota Makassar":
   [-5.1477,119.4327],
 
-
   "Kota Parepare":
   [-4.0135,119.6255],
-
 
   "Kota Palopo":
   [-2.9996,120.1985],
 
-
   "Bantaeng":
   [-5.5167,120.0167],
-
 
   "Barru":
   [-4.4333,119.6167],
 
-
   "Bone":
   [-4.5383,120.3279],
-
 
   "Bulukumba":
   [-5.5500,120.1833],
 
-
   "Enrekang":
   [-3.5630,119.7730],
-
 
   "Gowa":
   [-5.3167,119.7667],
 
-
   "Jeneponto":
   [-5.6772,119.7319],
-
 
   "Kepulauan Selayar":
   [-6.1333,120.4667],
 
-
   "Luwu":
   [-3.3833,120.3833],
-
 
   "Luwu Timur":
   [-2.5500,121.1667],
 
-
   "Luwu Utara":
   [-2.6000,119.9833],
-
 
   "Maros":
   [-5.0000,119.5667],
 
-
   "Pangkajene dan Kepulauan":
   [-4.8372,119.5450],
-
 
   "Pinrang":
   [-3.7861,119.6522],
 
-
   "Sidenreng Rappang":
   [-3.8500,119.8500],
-
 
   "Sinjai":
   [-5.1200,120.2500],
 
-
   "Soppeng":
   [-4.3500,119.8833],
-
 
   "Takalar":
   [-5.4167,119.4500],
 
-
   "Tana Toraja":
   [-3.1000,119.8000],
 
-
   "Toraja Utara":
   [-2.9667,119.9000],
-
 
   "Wajo":
   [-4.0000,120.1167]
@@ -1244,16 +1132,15 @@ const coordinates = {
 };
 
 
-
-/* =====================================================
-   INITIALIZE MAP
-===================================================== */
+/* =========================================
+   MAP
+========================================= */
 
 function initMap(){
 
-
-  if(map)
+  if(map){
     map.remove();
+  }
 
 
   map =
@@ -1265,29 +1152,23 @@ function initMap(){
 
 
   L.tileLayer(
-
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-
     {
-
       attribution:
       "&copy; OpenStreetMap contributors"
-
     }
-
   ).addTo(map);
 
 
-
   dpdData.forEach(dpd => {
-
 
     const coord =
       coordinates[dpd.nama];
 
 
-    if(!coord)
+    if(!coord){
       return;
+    }
 
 
     const marker =
@@ -1326,19 +1207,16 @@ function initMap(){
 
     `);
 
-
   });
 
 }
 
 
-
-/* =====================================================
+/* =========================================
    NAVIGATION
-===================================================== */
+========================================= */
 
 function showSection(id,button){
-
 
   document
     .querySelectorAll(".section")
@@ -1366,27 +1244,22 @@ function showSection(id,button){
   button.classList.add("active");
 
 
-
-  /* PERBAIKI UKURAN PETA
-     KETIKA KEMBALI KE DASHBOARD */
-
   if(id === "dashboard" && map){
 
     setTimeout(() => {
 
       map.invalidateSize();
 
-    },200);
+    },300);
 
   }
 
 }
 
 
-
-/* =====================================================
+/* =========================================
    START
-===================================================== */
+========================================= */
 
 loadDPD();
 
